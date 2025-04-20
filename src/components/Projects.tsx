@@ -1,4 +1,4 @@
-import { Calendar, Code } from "lucide-react";
+import { Calendar, Code, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useRef } from "react";
 
@@ -30,6 +30,7 @@ const Projects = () => {
       title: "AI Chrome Extension",
       period: "March 2025 - Present",
       tech: "Html, CSS, Javascript, Ollama, Chrome web api",
+      link: "https://github.com/Skt329/AI-Chrome-Extension",
       description: [
         "Developed a Chrome extension integrating with Ollama for AI-driven webpage summarization, chat, and form assistance.",
         "Implemented side panel integration with live content extraction and real-time AI chat powered by local models.",
@@ -40,6 +41,7 @@ const Projects = () => {
       title: "Phoenix AI Telegram Bot",
       period: "Oct 2024 - Jan 2025",
       tech: "Javascript, Node.js, Rest Api, Huggingface, Puppeteer",
+      link: "https://t.me/phoenix_7ai_bot",
       description: [
         "Developed an advanced multi-model AI assistant Telegram bot supporting multiple large language models.",
         "Integrated Stable Diffusion XL 3.5 from Hugging Face for high-quality image generation.",
@@ -50,6 +52,7 @@ const Projects = () => {
       title: "BVote",
       period: "Feb 2024 - May 2024",
       tech: "Solidity, Ethereum, Hardhat, Node.js, Web3.js",
+      link: "https://github.com/Skt329/BVote",
       description: [
         "Led a team to develop a decentralized voting system using Ethereum",
         "Designed and deployed smart contracts using Solidity and Remix",
@@ -65,12 +68,19 @@ const Projects = () => {
         {projects.map((project, index) => (
           <Card 
             key={project.title} 
-            className="project-card fade-up hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-purple-50/30"
+            className="project-card fade-up transform transition-all duration-300 hover:scale-105 hover:shadow-2xl bg-gradient-to-br from-white/80 to-purple-50/30 backdrop-blur-sm"
           >
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <span className="text-xl text-purple-700">{project.title}</span>
-                <Code className="w-5 h-5 text-purple-500" />
+                <a 
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full hover:bg-purple-100 transition-colors"
+                >
+                  <ExternalLink className="w-5 h-5 text-purple-500" />
+                </a>
               </CardTitle>
               <div className="flex items-center text-sm text-gray-500">
                 <Calendar className="w-4 h-4 mr-2" />

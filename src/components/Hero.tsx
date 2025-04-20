@@ -1,5 +1,5 @@
-
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useEffect, useRef } from "react";
 
 const Hero = () => {
@@ -23,8 +23,8 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="min-h-[90vh] flex flex-col justify-center items-center text-center px-4 bg-gradient-to-b from-purple-50 via-white to-white fade-up">
-      <div className="max-w-4xl mx-auto glass-card p-8 rounded-2xl">
+    <section ref={sectionRef} className="min-h-[90vh] flex flex-col justify-center items-center text-center px-4 bg-gradient-to-b from-purple-100 via-white to-transparent fade-up">
+      <div className="max-w-4xl mx-auto glass-card p-8 rounded-2xl transform transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text">
           Saurabh Tiwari
         </h1>
@@ -53,6 +53,14 @@ const Hero = () => {
             className="p-3 rounded-full hover:bg-purple-50 transition-all hover:scale-110"
           >
             <Mail className="w-7 h-7 text-purple-600" />
+          </a>
+          <a
+            href="/Saurabh_Tiwari_Resume.pdf"
+            download
+            className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-colors"
+          >
+            <Download className="w-5 h-5" />
+            Download Resume
           </a>
         </div>
         <div className="text-base text-gray-500">
