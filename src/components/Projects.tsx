@@ -1,8 +1,30 @@
-
 import { Calendar, Code } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useEffect, useRef } from "react";
 
 const Projects = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, idx) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, idx * 200);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const cards = sectionRef.current?.querySelectorAll('.project-card');
+    cards?.forEach(card => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, []);
+
   const projects = [
     {
       title: "AI Chrome Extension",
@@ -37,14 +59,17 @@ const Projects = () => {
   ];
 
   return (
-    <section className="py-16 px-4 max-w-6xl mx-auto" id="projects">
-      <h2 className="text-3xl font-bold mb-8 text-center">Projects</h2>
+    <section ref={sectionRef} className="py-20 px-4 max-w-6xl mx-auto" id="projects">
+      <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Projects</h2>
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
-          <Card key={project.title} className="hover:shadow-lg transition-shadow">
+        {projects.map((project, index) => (
+          <Card 
+            key={project.title} 
+            className="project-card fade-up hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-purple-50/30"
+          >
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
-                <span>{project.title}</span>
+                <span className="text-xl text-purple-700">{project.title}</span>
                 <Code className="w-5 h-5 text-purple-500" />
               </CardTitle>
               <div className="flex items-center text-sm text-gray-500">
@@ -53,10 +78,13 @@ const Projects = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-purple-600 mb-3">{project.tech}</p>
-              <ul className="text-sm space-y-2">
-                {project.description.map((desc, index) => (
-                  <li key={index}>{desc}</li>
+              <p className="text-sm text-purple-600 mb-3 font-medium">{project.tech}</p>
+              <ul className="text-sm space-y-2 text-gray-600">
+                {project.description.map((desc, idx) => (
+                  <li key={idx} className="flex items-start">
+                    <span className="mr-2 text-purple-400">•</span>
+                    {desc}
+                  </li>
                 ))}
               </ul>
             </CardContent>
