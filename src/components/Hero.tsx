@@ -1,13 +1,18 @@
 
-import { Github, Linkedin, Mail, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Github, Linkedin, Mail, Download, CircleArrowRight } from "lucide-react";
 import { useEffect, useRef } from "react";
+
+const ICON_HOVERS = [
+  "hover:bg-purple-200/80 hover:text-purple-800 hover:shadow-xl hover:border-purple-300",
+  "hover:bg-blue-200/80 hover:text-blue-800 hover:shadow-xl hover:border-blue-300",
+  "hover:bg-green-200/80 hover:text-green-800 hover:shadow-xl hover:border-green-300",
+];
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const observer = new window.IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
@@ -19,62 +24,87 @@ const Hero = () => {
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-
     return () => observer.disconnect();
   }, []);
 
   return (
     <section 
       ref={sectionRef}
-      className="min-h-[86vh] flex flex-col justify-center items-center text-center px-4 fade-up"
+      className="min-h-[88vh] flex flex-col justify-center items-center text-center px-4 fade-up"
+      style={{
+        background: "linear-gradient(109.6deg, #dbeafe 11.2%, #efd6f8 91.1%)",
+        position: "relative"
+      }}
     >
-      <div className="max-w-4xl mx-auto bg-gradient-to-br from-white/70 via-purple-100/80 to-blue-100/90 
-        glass-card border-2 border-pink-200 shadow-2xl p-8 rounded-3xl animate-fade-in transition-all duration-500 hover:scale-[1.02] relative">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text">Saurabh Tiwari</h1>
-        <p className="text-xl md:text-2xl text-gray-700 max-w-2xl mb-8 leading-relaxed">
-          Blockchain and AI developer with expertise in designing and implementing decentralized applications and intelligent systems.
-        </p>
-        <div className="flex gap-6 mb-8 justify-center">
-          <a
-            href="https://github.com/Skt329"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-full hover:bg-purple-200/60 hover:shadow-md transition-all hover:scale-110"
-          >
-            <Github className="w-7 h-7 text-purple-600" />
-          </a>
-          <a
-            href="https://linkedin.com/in/saurabht0"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-full hover:bg-blue-200/50 hover:shadow-md transition-all hover:scale-110"
-          >
-            <Linkedin className="w-7 h-7 text-blue-700" />
-          </a>
-          <a
-            href="mailto:st10813@gmail.com"
-            className="p-3 rounded-full hover:bg-green-200/40 hover:shadow-md transition-all hover:scale-110"
-          >
-            <Mail className="w-7 h-7 text-green-600" />
-          </a>
-        </div>
+      <div className="absolute left-[-80px] top-0 w-60 h-60 bg-gradient-to-br from-pink-200 via-orange-100 to-emerald-100 rounded-full blur-2xl opacity-60 z-0 pointer-events-none animate-pulse" />
+      <div className="absolute right-[-100px] bottom-[-50px] w-72 h-48 bg-gradient-to-br from-blue-200 via-purple-200 to-pink-100 rounded-full blur-2xl opacity-60 z-0 pointer-events-none animate-pulse" />
+
+      {/* Name & Tagline */}
+      <h1 className="relative z-10 mt-16 text-6xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-purple-600 via-pink-500 to-blue-600 bg-clip-text text-transparent pb-2 animate-gradient">
+        Saurabh Tiwari
+      </h1>
+      <p className="relative z-10 text-2xl md:text-3xl font-semibold text-gray-700 max-w-2xl mx-auto mt-4 mb-8 leading-relaxed animate-fade-in">
+        Blockchain & AI developer — building decentralized applications and intelligent systems.
+      </p>
+
+      {/* Contact/Links */}
+      <div className="relative z-10 flex gap-7 mb-8 justify-center animate-fade-in">
         <a
-          href="https://drive.google.com/file/d/1D94HtyhIdNmizvSUv8V1p5edTu_uCxuR/view?usp=drive_link"
+          href="https://github.com/Skt329"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-8 py-3 mb-6 bg-gradient-to-r from-purple-500 via-pink-400 to-blue-500 
-            text-white rounded-full shadow-lg hover:from-pink-600 hover:to-purple-700 hover:scale-105 transition-all 
-            animate-scale-in font-semibold text-lg z-10"
+          className={`
+            group w-14 h-14 flex items-center justify-center rounded-full border-2 border-purple-300 bg-white/70 shadow hover:scale-110 transition-all duration-200
+            ${ICON_HOVERS[0]}
+          `}
+          aria-label="GitHub"
         >
-          <Download className="w-6 h-6" />
-          Download Resume
+          <Github className="w-7 h-7 group-hover:scale-125 transition-transform text-purple-700" />
         </a>
-        <div className="text-base text-gray-500">
-          <p>+91-9721405709 | st10813@gmail.com</p>
-        </div>
-        <div className="absolute inset-0 z-0 pointer-events-none rounded-3xl" style={{
-          background: "linear-gradient(135deg, rgba(247,206,249,0.25) 0%, rgba(189,224,254,0.15) 100%)"
-        }}></div>
+        <a
+          href="https://linkedin.com/in/saurabht0"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`
+            group w-14 h-14 flex items-center justify-center rounded-full border-2 border-blue-300 bg-white/70 shadow hover:scale-110 transition-all duration-200
+            ${ICON_HOVERS[1]}
+          `}
+          aria-label="LinkedIn"
+        >
+          <Linkedin className="w-7 h-7 group-hover:scale-125 transition-transform text-blue-700" />
+        </a>
+        <a
+          href="mailto:st10813@gmail.com"
+          className={`
+            group w-14 h-14 flex items-center justify-center rounded-full border-2 border-green-300 bg-white/70 shadow hover:scale-110 transition-all duration-200
+            ${ICON_HOVERS[2]}
+          `}
+          aria-label="Email"
+        >
+          <Mail className="w-7 h-7 group-hover:scale-125 transition-transform text-green-700" />
+        </a>
+      </div>
+
+      {/* Resume Download Button */}
+      <a
+        href="https://drive.google.com/file/d/1D94HtyhIdNmizvSUv8V1p5edTu_uCxuR/view?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative z-10 inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-purple-500 via-pink-400 to-blue-500 text-white rounded-full font-bold text-lg shadow-lg hover:bg-gradient-to-l hover:from-pink-500 hover:to-purple-600 transition-all duration-200 group animate-scale-in"
+      >
+        <Download className="w-6 h-6 group-hover:animate-bounce" />
+        Download Resume
+        <CircleArrowRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-all" />
+      </a>
+
+      {/* Contact Info -- subtle underline */}
+      <div className="mt-9 text-lg text-gray-500 flex flex-col items-center select-text relative z-10">
+        <span className="font-medium transition-all flex items-center gap-1 hover:text-primary hover:underline">
+          +91-9721405709
+        </span>
+        <span className="font-medium transition-all hover:text-primary hover:underline">
+          st10813@gmail.com
+        </span>
       </div>
     </section>
   );
