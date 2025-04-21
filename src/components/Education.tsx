@@ -1,4 +1,3 @@
-
 import { School } from "lucide-react";
 import { useEffect, useRef } from "react";
 
@@ -54,7 +53,7 @@ const Education = () => {
             <div
               key={edu.university}
               className={`education-item fade-up bg-gradient-to-br ${backgrounds[idx % backgrounds.length]}
-                glass-card p-6 rounded-2xl border-2 border-white/70 hover:shadow-2xl transition-all duration-400 animate-fade-in`}
+                glass-card p-6 rounded-2xl border-2 border-white/70 hover:shadow-2xl hover:scale-105 transition-all duration-400 animate-fade-in`}
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-purple-100 rounded-full shadow-md">
