@@ -41,7 +41,7 @@ const Hero = () => {
       <div className="absolute right-[-120px] bottom-[-60px] w-72 h-56 bg-gradient-to-br from-indigo-300 via-purple-300 to-pink-200 rounded-full blur-3xl opacity-70 z-0 pointer-events-none animate-pulse" />
 
       {/* Name & Tagline */}
-      <h1 className="relative z-10 mt-16 text-6xl md:text-7xl font-extrabold tracking-tight text-indigo-900 drop-shadow-lg animate-fade-in">
+      <h1 className="relative z-10 mt-16 text-6xl md:text-7xl font-extrabold tracking-tight text-indigo-800 drop-shadow-sm animate-fade-in">
         Saurabh Tiwari
       </h1>
       <p className="relative z-10 text-2xl md:text-3xl font-semibold text-indigo-800 max-w-2xl mx-auto mt-4 mb-8 leading-relaxed animate-fade-in">
