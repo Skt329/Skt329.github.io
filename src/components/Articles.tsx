@@ -3,16 +3,16 @@ import { BookOpenText } from "lucide-react";
 
 const mediumArticles = [
   {
-    title: "Understanding Blockchain in Simple Terms",
-    url: "https://medium.com/@yourmediumprofile/understanding-blockchain-in-simple-terms-xxxxxx",
-    date: "March 2024",
-    desc: "An introduction to blockchain for non-technical readers.",
+    title: "Behind the Screen: How Computer Code Actually Works",
+    url: "https://medium.com/@thedotopinion/behind-the-screen-how-computer-code-actually-works-5346039fe152",
+    date: "April 2025",
+    desc: "A deep dive into the world of computer programming.",
   },
   {
-    title: "AI for Developers: Getting Started",
-    url: "https://medium.com/@yourmediumprofile/ai-for-developers-getting-started-xxxxxx",
-    date: "February 2024",
-    desc: "A simple guide for programmers to dive into AI.",
+    title: "Inside the Internet: What Happens After You Click?",
+    url: "https://medium.com/@thedotopinion/inside-the-internet-what-happens-after-you-click-fa9bff10c6e5",
+    date: "December 2024",
+    desc: "Journey through the internet's infrastructure.",
   },
 ];
 
@@ -55,7 +55,7 @@ export default function Articles() {
         </div>
         <div className="mt-4 text-center">
           <a
-            href="https://medium.com/@yourmediumprofile"
+            href="https://medium.com/@thedotopinion"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block rounded-full bg-black text-white px-5 py-2 mt-2 font-medium shadow hover:bg-gray-800 transition-colors duration-200 hover:scale-105"
