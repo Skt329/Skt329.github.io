@@ -40,7 +40,7 @@ const Hero = () => {
       <div className="absolute right-[-100px] bottom-[-50px] w-72 h-48 bg-gradient-to-br from-blue-200 via-purple-200 to-pink-100 rounded-full blur-2xl opacity-60 z-0 pointer-events-none animate-pulse" />
 
       {/* Name & Tagline */}
-      <h1 className="relative z-10 mt-16 text-6xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-purple-600 via-pink-500 to-blue-600 bg-clip-text text-transparent pb-2 animate-gradient">
+      <h1 className="relative z-10 mt-16 text-6xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-purple-600 via-pink-500 to-blue-600 bg-clip-text text-transparent pb-2 animate-gradient shadow-text">
         Saurabh Tiwari
       </h1>
       <p className="relative z-10 text-2xl md:text-3xl font-semibold text-gray-700 max-w-2xl mx-auto mt-4 mb-8 leading-relaxed animate-fade-in">
@@ -90,7 +90,7 @@ const Hero = () => {
         href="https://drive.google.com/file/d/1D94HtyhIdNmizvSUv8V1p5edTu_uCxuR/view?usp=drive_link"
         target="_blank"
         rel="noopener noreferrer"
-        className="relative z-10 inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-purple-500 via-pink-400 to-blue-500 text-white rounded-full font-bold text-lg shadow-lg hover:bg-gradient-to-l hover:from-pink-500 hover:to-purple-600 transition-all duration-200 group animate-scale-in"
+        className="relative z-10 inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-purple-500 via-pink-400 to-blue-500 text-white rounded-full font-bold text-lg shadow-lg hover:bg-gradient-to-l hover:from-pink-500 hover:to-purple-600 transition-all duration-300 group animate-scale-in hover:scale-105"
       >
         <Download className="w-6 h-6 group-hover:animate-bounce" />
         Download Resume

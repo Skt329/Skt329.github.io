@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -124,6 +125,10 @@
     background: linear-gradient(120deg, #fbeff9, #e0eafc 20%, #c6fcf3 40%, #f2fcef 60%, #fbeff9 80%);
     background-size: 300% 300%;
     animation: animated-bg-gradient 16s ease-in-out infinite;
+  }
+
+  .shadow-text {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   @keyframes animated-bg-gradient {
