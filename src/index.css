@@ -119,4 +119,16 @@
   .gradient-text {
     @apply bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent;
   }
+
+  .animate-gradient {
+    background: linear-gradient(120deg, #fbeff9, #e0eafc 20%, #c6fcf3 40%, #f2fcef 60%, #fbeff9 80%);
+    background-size: 300% 300%;
+    animation: animated-bg-gradient 16s ease-in-out infinite;
+  }
+
+  @keyframes animated-bg-gradient {
+    0% { background-position: 0% 80%; }
+    50% { background-position: 100% 20%; }
+    100% { background-position: 0% 80%; }
+  }
 }

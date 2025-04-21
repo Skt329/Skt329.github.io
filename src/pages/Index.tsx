@@ -6,8 +6,8 @@ import Skills from "@/components/Skills";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-white to-blue-100">
-      <main className="space-y-8"> {/* Reduced from space-y-16 to space-y-8 */}
+    <div className="min-h-screen bg-gradient-to-br from-purple-200 via-pink-100 via-40% to-blue-200 animate-gradient">
+      <main className="space-y-6"> {/* Even smaller gap for fluency */}
         <Hero />
         <Projects />
         <Education />

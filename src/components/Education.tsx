@@ -1,3 +1,4 @@
+
 import { School } from "lucide-react";
 import { useEffect, useRef } from "react";
 
@@ -11,7 +12,7 @@ const Education = () => {
           if (entry.isIntersecting) {
             setTimeout(() => {
               entry.target.classList.add('visible');
-            }, idx * 200);
+            }, idx * 120);
           }
         });
       },
@@ -39,18 +40,24 @@ const Education = () => {
     },
   ];
 
+  const backgrounds = [
+    "from-purple-50/70 via-pink-50/80 to-blue-50/80",
+    "from-blue-50/80 via-green-50/70 to-yellow-50/80",
+  ];
+
   return (
-    <section ref={sectionRef} className="py-20 px-4 bg-gradient-to-br from-purple-50/50 to-blue-50/50" id="education">
+    <section ref={sectionRef} className="py-10 px-4 bg-gradient-to-br from-pink-50/40 to-purple-50/60" id="education">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Education</h2>
-        <div className="space-y-8">
-          {education.map((edu) => (
+        <h2 className="text-4xl font-bold mb-8 text-center gradient-text">Education</h2>
+        <div className="space-y-6">
+          {education.map((edu, idx) => (
             <div
               key={edu.university}
-              className="education-item fade-up glass-card p-6 rounded-xl hover:shadow-lg transition-all duration-300"
+              className={`education-item fade-up bg-gradient-to-br ${backgrounds[idx % backgrounds.length]}
+                glass-card p-6 rounded-2xl border-2 border-white/70 hover:shadow-2xl transition-all duration-400 animate-fade-in`}
             >
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-purple-100 rounded-full">
+                <div className="p-3 bg-purple-100 rounded-full shadow-md">
                   <School className="w-6 h-6 text-purple-600" />
                 </div>
                 <div>
