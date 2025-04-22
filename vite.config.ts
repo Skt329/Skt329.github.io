@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => ({
   ].filter(Boolean),
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"), // ✅ Fix alias to point to src
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 }));
