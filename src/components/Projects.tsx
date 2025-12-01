@@ -28,25 +28,47 @@ const Projects = () => {
 
   const projects = [
     {
+      title: "Synth News",
+      period: "July 2025 - Present",
+      tech: "React, Supabase, Gemini AI, LangChain, N8N, RAG",
+      link: "https://synthnews.vercel.app/",
+      description: [
+        "Architected and deployed an AI-powered news aggregation platform that processes 1,000+ articles daily from 15+ trusted publishers.",
+        "Engineered automated processing pipeline integrating RSS webhooks, web scraping, and batch embedding generation to cluster similar articles with verifiable citations.",
+        "Implemented cost-optimization architecture leveraging batch API processing (50% cost reduction), vector database similarity search, and tiered storage strategy ($15/day to $5/day).",
+      ],
+    },
+    {
+      title: "Image-Resizer",
+      period: "April 2025 - May 2025",
+      tech: "Next.js, React, TypeScript, Tailwind CSS, Framer Motion",
+      link: "https://image-resizer-henna.vercel.app/",
+      description: [
+        "Developed a professional web application for image processing and optimization using Next.js, React, and TypeScript.",
+        "Implemented features for resizing, compressing, and converting image formats (JPEG/PNG) to meet application form requirements.",
+        "Built modern UI/UX with Tailwind CSS, responsive design, dark mode, and smooth Framer Motion-powered animations.",
+      ],
+    },
+    {
       title: "AI Chrome Extension",
-      period: "March 2025 - Present",
-      tech: "Html, CSS, Javascript, Ollama, Chrome web api",
+      period: "March 2025 - April 2025",
+      tech: "HTML, CSS, Javascript, Ollama, Chrome Web API",
       link: "https://github.com/Skt329/AI-Chrome-Extension",
       description: [
         "Developed a Chrome extension integrating with Ollama for AI-driven webpage summarization, chat, and form assistance.",
         "Implemented side panel integration with live content extraction and real-time AI chat powered by local models.",
-        "Configured custom system prompts and model selection for adaptive AI behavior.",
+        "Ensured all data processing occurs locally through on-device models, maintaining complete user privacy without external API calls.",
       ],
     },
     {
       title: "Phoenix AI Telegram Bot",
       period: "Oct 2024 - Jan 2025",
-      tech: "Javascript, Node.js, Rest Api, Huggingface, Puppeteer",
+      tech: "Javascript, Node.js, Puppeteer, Hugging Face",
       link: "https://t.me/phoenix_7ai_bot",
       description: [
-        "Developed an advanced multi-model AI assistant Telegram bot supporting multiple large language models.",
+        "Developed an advanced multi-model AI assistant Telegram bot supporting multiple large language models (OpenAI ChatGPT, Google Gemini, Mistral, Llama).",
         "Integrated Stable Diffusion XL 3.5 from Hugging Face for high-quality image generation.",
-        "Built a backend server using Node.js with node-telegram-bot-api for a scalable architecture.",
+        "Implemented function calling for complex tasks like YouTube video summarization and question answering based on video content.",
       ],
     },
     {
@@ -55,9 +77,9 @@ const Projects = () => {
       tech: "Solidity, Ethereum, Hardhat, Node.js, Web3.js",
       link: "https://github.com/Skt329/BVote",
       description: [
-        "Led a team to develop a decentralized voting system using Ethereum",
-        "Designed and deployed smart contracts using Solidity and Remix",
-        "Created a relayering system using meta transaction that improved user experience",
+        "Led a team to develop a decentralized voting system using Ethereum blockchain.",
+        "Designed and deployed smart contracts using Solidity and Remix that enhanced transparency, security, and immutability.",
+        "Created a relayering system using meta transaction that improved user experience, resulting in a 30% increase in user engagement.",
       ],
     },
   ];
@@ -74,8 +96,8 @@ const Projects = () => {
       <h2 className="text-4xl font-bold mb-8 text-center gradient-text">Projects</h2>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
-          <Card 
-            key={project.title} 
+          <Card
+            key={project.title}
             className={`project-card fade-up rounded-2xl bg-gradient-to-br ${cardGradients[index % cardGradients.length]}
               shadow-xl backdrop-blur-sm border-2 border-white/50 hover:border-primary hover:scale-105 
               transition-all duration-400 hover:shadow-2xl animate-fade-in`}
@@ -83,7 +105,7 @@ const Projects = () => {
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <span className="text-xl text-purple-700">{project.title}</span>
-                <a 
+                <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"

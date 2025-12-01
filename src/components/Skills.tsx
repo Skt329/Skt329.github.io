@@ -46,34 +46,34 @@ const Skills = () => {
 
   const skillsData = [
     {
-      category: "Blockchain Development",
-      icon: <Code className="w-6 h-6 text-purple-600" />,
-      skills: ["Solidity", "Web3.js", "Ether.js", "Hardhat", "Remix", "Ethereum"],
-    },
-    {
       category: "Programming Languages",
       icon: <Terminal className="w-6 h-6 text-indigo-600" />,
-      skills: ["Java", "Python", "C/C++", "Javascript"],
+      skills: ["JavaScript", "TypeScript", "Python", "Java", "C/C++"],
     },
     {
-      category: "Backend & Infrastructure",
+      category: "Frontend Technologies",
+      icon: <Code className="w-6 h-6 text-purple-600" />,
+      skills: ["React.js", "Next.js", "HTML", "CSS", "Tailwind CSS", "Framer Motion"],
+    },
+    {
+      category: "Backend & APIs",
       icon: <Database className="w-6 h-6 text-blue-600" />,
-      skills: ["Express.js", "Node.js", "MongoDB", "MySQL"],
+      skills: ["Node.js", "Express.js", "REST APIs", "MongoDB", "MySQL"],
     },
     {
-      category: "AI & Cloud Platforms",
+      category: "Blockchain Development",
+      icon: <FileCode className="w-6 h-6 text-violet-600" />,
+      skills: ["Solidity", "Ethereum", "Hardhat", "Remix", "Web3.js"],
+    },
+    {
+      category: "AI/ML & Automation",
       icon: <Settings className="w-6 h-6 text-cyan-600" />,
-      skills: ["Huggingface", "Google AI Studio"],
+      skills: ["OpenAI API", "Google Gemini", "LangChain", "LangGraph", "RAG", "N8N", "Hugging Face"],
     },
     {
-      category: "Development Tools",
-      icon: <Github className="w-6 h-6 text-violet-600" />,
-      skills: ["Git", "VS Code"],
-    },
-    {
-      category: "Web Automation",
-      icon: <FileCode className="w-6 h-6 text-fuchsia-600" />,
-      skills: ["Puppeteer", "Cheerio"],
+      category: "Tools & Platforms",
+      icon: <Github className="w-6 h-6 text-fuchsia-600" />,
+      skills: ["Git", "VS Code", "Supabase", "Puppeteer", "Cursor", "Lovable"],
     }
   ];
 
@@ -85,12 +85,12 @@ const Skills = () => {
           A comprehensive overview of my technical expertise and tools I work with
         </p>
       </div>
-      
+
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {skillsData.map((category, index) => {
           const grad = skillCardGradients[index % skillCardGradients.length];
           return (
-            <div 
+            <div
               key={category.category}
               className={`skill-card fade-up glass-card p-6 rounded-2xl transform transition-all duration-500
                 bg-gradient-to-br ${grad.normal} ${grad.hover} border-2 ${grad.border} hover:shadow-2xl 

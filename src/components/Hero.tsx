@@ -28,7 +28,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="min-h-[88vh] flex flex-col justify-center items-center text-center px-4 fade-up"
       style={{
@@ -44,7 +44,7 @@ const Hero = () => {
         Saurabh Tiwari
       </h1>
       <p className="relative z-10 text-2xl md:text-3xl font-semibold text-gray-700 max-w-2xl mx-auto mt-4 mb-8 leading-relaxed animate-fade-in">
-        Blockchain & AI developer — building decentralized applications and intelligent systems.
+        Full-stack developer specializing in AI integration and blockchain systems — building production applications with optimized architecture.
       </p>
 
       {/* Contact/Links */}
@@ -83,12 +83,12 @@ const Hero = () => {
         >
           <Mail className="w-7 h-7 group-hover:scale-125 transition-transform text-green-700" />
         </a>
-        
+
       </div>
 
       {/* Resume Download Button */}
       <a
-        href="https://drive.google.com/file/d/1D94HtyhIdNmizvSUv8V1p5edTu_uCxuR/view?usp=drive_link"
+        href="https://drive.google.com/file/d/1o5whVGua83ownYDEd1vTvQxZD47rsLn-/view?usp=drive_link"
         target="_blank"
         rel="noopener noreferrer"
         className="relative z-10 inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-purple-500 via-pink-400 to-blue-500 text-white rounded-full font-bold text-lg shadow-lg hover:bg-gradient-to-l hover:from-pink-500 hover:to-purple-600 transition-all duration-300 group animate-scale-in hover:scale-105"
@@ -98,7 +98,7 @@ const Hero = () => {
         <CircleArrowRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-all" />
       </a>
 
-    
+
     </section>
   );
 };
