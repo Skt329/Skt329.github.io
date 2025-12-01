@@ -1,69 +1,50 @@
-# Welcome to your Lovable project
+# Portfolio Website
 
-## Project info
+A modern, responsive portfolio website featuring a stunning "Glassmorphism + Neon" dark theme. Built to showcase projects, skills, and education with an immersive user experience.
 
-**URL**: https://lovable.dev/projects/06862392-7d2d-4386-a01d-200a4f2ce805
+## ✨ Features
 
-## How can I edit this code?
+-   **Modern UI**: Sleek Glassmorphism design with neon accents.
+-   **Dark Mode**: Optimized for visual comfort and style.
+-   **Interactive Animations**: Powered by Framer Motion for smooth transitions and engaging effects.
+-   **Responsive Design**: Fully responsive layout that looks great on all devices.
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+-   **Frontend**: [React](https://reactjs.org/)
+-   **Language**: [TypeScript](https://www.typescriptlang.org/)
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+-   **Animations**: [Framer Motion](https://www.framer.com/motion/)
+-   **Build Tool**: [Vite](https://vitejs.dev/)
+-   **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/06862392-7d2d-4386-a01d-200a4f2ce805) and start prompting.
+## 🚀 Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+To get a local copy up and running, follow these simple steps.
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Ensure you have Node.js installed.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
+1.  Clone the repository:
+    ```sh
+    git clone <YOUR_GIT_URL>
+    ```
+2.  Navigate to the project directory:
+    ```sh
+    cd Portfolio
+    ```
+3.  Install dependencies:
+    ```sh
+    npm install
+    ```
+4.  Start the development server:
+    ```sh
+    npm run dev
+    ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 📝 License
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Distributed under the MIT License. See `LICENSE` for more information.
