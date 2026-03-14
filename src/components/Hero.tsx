@@ -1,104 +1,106 @@
-
-import { Phone, Github, Linkedin, Mail, Download, CircleArrowRight } from "lucide-react";
+import { Github, Linkedin, Mail, Download, ChevronDown } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-const ICON_HOVERS = [
-  "hover:bg-purple-200/80 hover:text-purple-800 hover:shadow-xl hover:border-purple-300",
-  "hover:bg-blue-200/80 hover:text-blue-800 hover:shadow-xl hover:border-blue-300",
-  "hover:bg-green-200/80 hover:text-green-800 hover:shadow-xl hover:border-green-300",
+const socials = [
+  { icon: Github, href: "https://github.com/Skt329", label: "GitHub" },
+  { icon: Linkedin, href: "https://linkedin.com/in/saurabht0", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:st108113@gmail.com", label: "Email" },
 ];
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new window.IntersectionObserver(
+    const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add("visible");
       },
       { threshold: 0.1 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="min-h-[88vh] flex flex-col justify-center items-center text-center px-4 fade-up"
-      style={{
-        background: "linear-gradient(109.6deg, #dbeafe 11.2%, #efd6f8 91.1%)",
-        position: "relative"
-      }}
+      className="relative min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 pb-12 overflow-hidden fade-up"
     >
-      <div className="absolute left-[-80px] top-0 w-60 h-60 bg-gradient-to-br from-pink-200 via-orange-100 to-emerald-100 rounded-full blur-2xl opacity-60 z-0 pointer-events-none animate-pulse" />
-      <div className="absolute right-[-100px] bottom-[-50px] w-72 h-48 bg-gradient-to-br from-blue-200 via-purple-200 to-pink-100 rounded-full blur-2xl opacity-60 z-0 pointer-events-none animate-pulse" />
-
-      {/* Name & Tagline */}
-      <h1 className="relative z-10 mt-16 text-6xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-purple-600 via-pink-500 to-blue-600 bg-clip-text text-transparent pb-2 animate-gradient shadow-text">
-        Saurabh Tiwari
-      </h1>
-      <p className="relative z-10 text-2xl md:text-3xl font-semibold text-gray-700 max-w-2xl mx-auto mt-4 mb-8 leading-relaxed animate-fade-in">
-        Full-stack developer specializing in AI integration and blockchain systems — building production applications with optimized architecture.
-      </p>
-
-      {/* Contact/Links */}
-      <div className="relative z-10 flex gap-7 mb-8 justify-center animate-fade-in">
-        <a
-          href="https://github.com/Skt329"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`
-            group w-14 h-14 flex items-center justify-center rounded-full border-2 border-purple-300 bg-white/70 shadow hover:scale-110 transition-all duration-200
-            ${ICON_HOVERS[0]}
-          `}
-          aria-label="GitHub"
-        >
-          <Github className="w-7 h-7 group-hover:scale-125 transition-transform text-purple-700" />
-        </a>
-        <a
-          href="https://linkedin.com/in/saurabht0"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`
-            group w-14 h-14 flex items-center justify-center rounded-full border-2 border-blue-300 bg-white/70 shadow hover:scale-110 transition-all duration-200
-            ${ICON_HOVERS[1]}
-          `}
-          aria-label="LinkedIn"
-        >
-          <Linkedin className="w-7 h-7 group-hover:scale-125 transition-transform text-blue-700" />
-        </a>
-        <a
-          href="mailto:st10813@gmail.com"
-          className={`
-            group w-14 h-14 flex items-center justify-center rounded-full border-2 border-green-300 bg-white/70 shadow hover:scale-110 transition-all duration-200
-            ${ICON_HOVERS[2]}
-          `}
-          aria-label="Email"
-        >
-          <Mail className="w-7 h-7 group-hover:scale-125 transition-transform text-green-700" />
-        </a>
-
+      {/* Background effects */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-secondary/5 blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-indigo/3 blur-[150px]" />
       </div>
 
-      {/* Resume Download Button */}
+      {/* Subtle grid pattern */}
+      <div
+        className="absolute inset-0 -z-10 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "linear-gradient(hsl(240 6% 30%) 1px, transparent 1px), linear-gradient(90deg, hsl(240 6% 30%) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      {/* Status badge */}
+      <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-surface/50 backdrop-blur-sm">
+        <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+        <span className="text-xs font-medium text-muted-foreground tracking-wide uppercase">
+          Available for opportunities
+        </span>
+      </div>
+
+      {/* Name */}
+      <h1 className="font-heading font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-foreground mb-6">
+        Saurabh{" "}
+        <span className="text-gradient">Tiwari</span>
+      </h1>
+
+      {/* Tagline */}
+      <p className="max-w-2xl text-lg sm:text-xl text-muted-foreground leading-relaxed mb-10 font-body">
+        AI Engineer & full-stack developer specializing in{" "}
+        <span className="text-foreground font-medium">LLM integration</span>,{" "}
+        <span className="text-foreground font-medium">RAG pipelines</span>, and{" "}
+        <span className="text-foreground font-medium">local AI inference</span>
+        . Building production applications with optimized architecture.
+      </p>
+
+      {/* Social links */}
+      <div className="flex items-center gap-4 mb-8">
+        {socials.map(({ icon: Icon, href, label }) => (
+          <a
+            key={label}
+            href={href}
+            target={label !== "Email" ? "_blank" : undefined}
+            rel="noopener noreferrer"
+            aria-label={label}
+            className="group w-12 h-12 flex items-center justify-center rounded-xl border border-border bg-surface/50 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+          >
+            <Icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+          </a>
+        ))}
+      </div>
+
+      {/* Resume button */}
       <a
-        href="https://drive.google.com/file/d/1o5whVGua83ownYDEd1vTvQxZD47rsLn-/view?usp=drive_link"
+        href="https://drive.google.com/file/d/11mLcVV-otGPPiDeUGBe9bu6HSQbw0int/view?usp=sharing"
         target="_blank"
         rel="noopener noreferrer"
-        className="relative z-10 inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-purple-500 via-pink-400 to-blue-500 text-white rounded-full font-bold text-lg shadow-lg hover:bg-gradient-to-l hover:from-pink-500 hover:to-purple-600 transition-all duration-300 group animate-scale-in hover:scale-105"
+        className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-xl bg-primary text-primary-foreground font-heading font-semibold text-sm tracking-wide hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5"
       >
-        <Download className="w-6 h-6 group-hover:animate-bounce" />
+        <Download className="w-4 h-4 group-hover:animate-bounce" />
         Download Resume
-        <CircleArrowRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-all" />
       </a>
 
-
+      {/* Scroll indicator */}
+      <a
+        href="#projects"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground/40 hover:text-muted-foreground transition-colors"
+        aria-label="Scroll to projects"
+      >
+        <ChevronDown className="w-6 h-6 animate-scroll-bounce" />
+      </a>
     </section>
   );
 };
