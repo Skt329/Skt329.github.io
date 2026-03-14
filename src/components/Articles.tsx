@@ -1,18 +1,18 @@
-import { BookOpen, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { BookOpen, ArrowUpRight } from "lucide-react";
 
-const mediumArticles = [
+const articles = [
   {
     title: "Behind the Screen: How Computer Code Actually Works",
     url: "https://medium.com/@thedotopinion/behind-the-screen-how-computer-code-actually-works-5346039fe152",
     date: "April 2025",
-    desc: "A deep dive into the world of computer programming and how machines interpret human-written code.",
+    desc: "A deep dive into how machines interpret and execute human-written code.",
   },
   {
     title: "Inside the Internet: What Happens After You Click?",
     url: "https://medium.com/@thedotopinion/inside-the-internet-what-happens-after-you-click-fa9bff10c6e5",
     date: "December 2024",
-    desc: "Journey through the internet's infrastructure — from DNS resolution to server response.",
+    desc: "From DNS resolution to server response — the hidden journey of every click.",
   },
 ];
 
@@ -28,64 +28,65 @@ const Articles = () => {
       },
       { threshold: 0.1 }
     );
-    const cards = sectionRef.current?.querySelectorAll(".article-card");
-    cards?.forEach((card) => observer.observe(card));
+    const els = sectionRef.current?.querySelectorAll(".fade-up");
+    els?.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
     <section ref={sectionRef} className="py-24 px-6" id="articles">
-      <div className="max-w-4xl mx-auto">
-        {/* Section header */}
-        <div className="text-center mb-16">
-          <span className="text-primary text-sm font-heading font-semibold tracking-widest uppercase mb-3 block">
-            Writing
-          </span>
-          <h2 className="font-heading font-bold text-4xl sm:text-5xl text-foreground">
-            Articles
-          </h2>
-        </div>
-
-        {/* Article cards */}
-        <div className="grid sm:grid-cols-2 gap-5">
-          {mediumArticles.map((article, index) => (
+      <div className="max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-16 items-start">
+          {/* Left — heading */}
+          <div className="lg:sticky lg:top-28">
+            <span className="fade-up text-primary text-sm font-heading font-semibold tracking-widest uppercase block mb-3">
+              Writing
+            </span>
+            <h2 className="fade-up font-heading font-bold text-3xl sm:text-4xl text-foreground mb-4">
+              I write about tech
+            </h2>
+            <p className="fade-up text-muted-foreground text-sm leading-relaxed mb-6">
+              Breaking down complex technical concepts into approachable reads.
+            </p>
             <a
-              key={article.title}
-              href={article.url}
+              href="https://medium.com/@thedotopinion"
               target="_blank"
               rel="noopener noreferrer"
-              className={`article-card fade-up stagger-${index + 1} glass-card glass-card-hover rounded-2xl p-6 group block`}
+              className="fade-up group inline-flex items-center gap-2 text-sm font-heading font-semibold text-muted-foreground hover:text-primary transition-colors"
             >
-              <div className="flex items-start justify-between mb-3">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              Read on Medium
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
+
+          {/* Right — article cards */}
+          <div className="space-y-4">
+            {articles.map((article, i) => (
+              <a
+                key={article.title}
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`fade-up stagger-${i + 1} group flex items-start gap-5 p-6 rounded-2xl border border-border hover:border-primary/20 bg-surface/20 hover:bg-surface/50 transition-all duration-400 block`}
+              >
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                   <BookOpen className="w-5 h-5 text-primary" />
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-              </div>
-              <h3 className="font-heading font-semibold text-lg text-foreground group-hover:text-primary transition-colors mb-2 leading-tight">
-                {article.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                {article.desc}
-              </p>
-              <span className="text-xs text-muted-foreground/60 font-medium tracking-wide">
-                {article.date}
-              </span>
-            </a>
-          ))}
-        </div>
-
-        {/* Medium CTA */}
-        <div className="text-center mt-10">
-          <a
-            href="https://medium.com/@thedotopinion"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border text-sm font-heading font-semibold text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300"
-          >
-            Read more on Medium
-            <ArrowUpRight className="w-4 h-4" />
-          </a>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-heading font-semibold text-lg text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug">
+                    {article.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                    {article.desc}
+                  </p>
+                  <span className="text-xs text-muted-foreground/50 font-medium">
+                    {article.date}
+                  </span>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-muted-foreground/30 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 mt-1" />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>

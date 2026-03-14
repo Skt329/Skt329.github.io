@@ -1,32 +1,55 @@
-import { ExternalLink, Calendar } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ExternalLink, ArrowUpRight, Calendar, ChevronDown } from "lucide-react";
 
-const projects = [
+/* ──────────────────────────────
+   Featured Projects (case-study)
+   ────────────────────────────── */
+
+const featured = [
   {
     title: "Synth News",
-    period: "Jul 2025 — Present",
-    tech: ["React", "Supabase", "Gemini AI", "RAG"],
     link: "https://synthnews.vercel.app/",
+    period: "Jul 2025 — Present",
+    tech: ["React", "Supabase", "Gemini AI", "RAG", "N8N"],
+    tagline: "AI-powered news aggregation that actually saves money",
     description:
-      "AI-powered news aggregation processing 1,000+ daily articles from 15+ publishers with vector embeddings and semantic clustering. Cost-optimized from $15/day to $5/day via batch API and hybrid search.",
-    highlight: true,
+      "Processes 1,000+ articles daily from 15+ trusted publishers using vector embeddings and semantic clustering. A hybrid search system combines vector-based semantic search with external news APIs, delivering sub-second response times.",
+    stats: [
+      { value: "$5/day", label: "Operating cost", sub: "down from $15/day" },
+      { value: "50%", label: "API cost cut", sub: "via batch processing" },
+      { value: "15+", label: "News publishers", sub: "aggregated daily" },
+      { value: "<1s", label: "Search response", sub: "sub-second queries" },
+    ],
   },
   {
     title: "Audiobook Creator",
-    period: "Aug 2025 — Present",
-    tech: ["Python", "Chatterbox TTS", "Local AI"],
     link: "https://github.com/Skt329/pdf-audiobook",
+    period: "Aug 2025 — Present",
+    tech: ["Python", "Chatterbox TTS", "Local Inference"],
+    tagline: "PDF to audiobook, entirely on your machine",
     description:
-      "Windows desktop app converting PDFs to audiobooks using 350M-parameter Chatterbox Turbo TTS, running entirely on local CPU/GPU with zero-shot voice cloning from 10-second reference audio.",
-    highlight: true,
+      "Windows desktop app powered by the 350M-parameter Chatterbox Turbo TTS model. Converts full PDF books into audiobooks with zero cloud dependency, including zero-shot voice cloning from a 10-second reference sample.",
+    stats: [
+      { value: "350M", label: "TTS parameters", sub: "Chatterbox Turbo" },
+      { value: "0", label: "Cloud dependency", sub: "fully local" },
+      { value: "10s", label: "Voice clone input", sub: "zero-shot cloning" },
+      { value: "24kHz", label: "Audio quality", sub: "WAV output" },
+    ],
   },
+];
+
+/* ──────────────────────────
+   AI Projects (main grid)
+   ────────────────────────── */
+
+const aiProjects = [
   {
     title: "AI Chrome Extension",
-    period: "Mar 2025 — Jul 2025",
+    period: "Mar — Jul 2025",
     tech: ["JavaScript", "Ollama", "Chrome API"],
     link: "https://github.com/Skt329/AI-Chrome-Extension",
     description:
-      "Privacy-first Chrome extension integrating Ollama's local inference for webpage summarization and chat. Supports any locally-hosted open-source model with custom system prompt configuration.",
+      "Privacy-first extension integrating Ollama for local AI-powered webpage summarization, chat, and custom prompt config. Zero data leaves the device.",
   },
   {
     title: "Phoenix AI Telegram Bot",
@@ -34,28 +57,34 @@ const projects = [
     tech: ["Node.js", "Puppeteer", "Hugging Face"],
     link: "https://t.me/phoenix_7ai_bot",
     description:
-      "Multi-model AI assistant supporting 3 API providers with YouTube transcript scraping via Puppeteer, Stable Diffusion XL image generation, and Whisper speech-to-text processing.",
+      "Multi-model assistant with 3 API providers, YouTube transcript scraping, Stable Diffusion XL image gen, and Whisper speech-to-text.",
   },
+];
+
+/* ──────────────────────────
+   Older experiments (collapsed)
+   ────────────────────────── */
+
+const olderProjects = [
   {
     title: "BVote",
-    period: "Feb 2024 — May 2024",
-    tech: ["Solidity", "Ethereum", "Hardhat", "Web3.js"],
+    period: "Feb — May 2024",
+    tech: ["Solidity", "Ethereum", "Hardhat"],
     link: "https://github.com/Skt329/BVote",
-    description:
-      "Decentralized voting system on Ethereum blockchain with smart contracts in Solidity. Meta-transaction relaying improved UX with 30% increase in user engagement.",
+    description: "Decentralized voting on Ethereum with meta-transaction relaying. Led team, 30% UX improvement.",
   },
   {
     title: "Image Resizer",
-    period: "Apr 2025 — May 2025",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    period: "Apr — May 2025",
+    tech: ["Next.js", "TypeScript", "Tailwind"],
     link: "https://image-resizer-henna.vercel.app/",
-    description:
-      "Professional web app for image processing — resize, compress, and convert formats (JPEG/PNG) to meet application form requirements. Built with responsive design and smooth animations.",
+    description: "Web app for image resize, compress, and format conversion for application forms.",
   },
 ];
 
 const Projects = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const [showOlder, setShowOlder] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,10 +93,10 @@ const Projects = () => {
           if (entry.isIntersecting) entry.target.classList.add("visible");
         });
       },
-      { threshold: 0.08 }
+      { threshold: 0.06 }
     );
-    const cards = sectionRef.current?.querySelectorAll(".project-card");
-    cards?.forEach((card) => observer.observe(card));
+    const els = sectionRef.current?.querySelectorAll(".fade-up, .fade-left, .fade-right");
+    els?.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
@@ -75,61 +104,159 @@ const Projects = () => {
     <section ref={sectionRef} className="py-24 px-6" id="projects">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <span className="text-primary text-sm font-heading font-semibold tracking-widest uppercase mb-3 block">
-            Work
+        <div className="mb-20">
+          <span className="fade-up stagger-1 text-primary text-sm font-heading font-semibold tracking-widest uppercase block mb-4">
+            Featured Work
           </span>
-          <h2 className="font-heading font-bold text-4xl sm:text-5xl text-foreground">
-            Featured Projects
+          <h2 className="fade-up stagger-2 font-heading font-bold text-4xl sm:text-5xl md:text-6xl text-foreground max-w-3xl leading-tight">
+            Projects that solve real problems
           </h2>
         </div>
 
-        {/* Projects grid */}
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
+        {/* ── Featured Projects (case-study) ── */}
+        <div className="space-y-12 mb-20">
+          {featured.map((project) => (
             <div
               key={project.title}
-              className={`project-card fade-up stagger-${index + 1} glass-card glass-card-hover rounded-2xl p-6 flex flex-col ${
-                project.highlight ? "md:col-span-1 ring-1 ring-primary/10" : ""
-              }`}
+              className="fade-up featured-card rounded-3xl overflow-hidden"
             >
-              {/* Header */}
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="font-heading font-bold text-xl text-foreground mb-1 group">
-                    {project.title}
-                  </h3>
-                  <div className="flex items-center gap-1.5 text-muted-foreground text-xs">
+              <div className="p-8 sm:p-10 md:p-12">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="font-heading font-bold text-2xl sm:text-3xl text-foreground">
+                        {project.title}
+                      </h3>
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 flex items-center justify-center rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all"
+                        aria-label={`Visit ${project.title}`}
+                      >
+                        <ArrowUpRight className="w-5 h-5" />
+                      </a>
+                    </div>
+                    <p className="text-primary/80 font-heading font-medium text-sm">
+                      {project.tagline}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-muted-foreground text-xs shrink-0">
                     <Calendar className="w-3 h-3" />
                     {project.period}
                   </div>
                 </div>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`View ${project.title}`}
-                  className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
 
-              {/* Tech tags */}
-              <div className="flex flex-wrap gap-1.5 mb-4">
-                {project.tech.map((t) => (
-                  <span key={t} className="tag-pill text-[11px]">
-                    {t}
-                  </span>
-                ))}
-              </div>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {project.tech.map((t) => (
+                    <span key={t} className="tag-pill">{t}</span>
+                  ))}
+                </div>
 
-              {/* Description */}
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                {project.description}
-              </p>
+                <p className="text-muted-foreground leading-relaxed max-w-2xl mb-10">
+                  {project.description}
+                </p>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {project.stats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="rounded-xl bg-surface/60 border border-border p-4 text-center"
+                    >
+                      <div className="font-heading font-extrabold text-xl sm:text-2xl text-primary mb-0.5">
+                        {stat.value}
+                      </div>
+                      <div className="text-xs text-foreground font-medium">{stat.label}</div>
+                      <div className="text-[10px] text-muted-foreground mt-0.5">{stat.sub}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           ))}
+        </div>
+
+        {/* ── AI Projects Grid ── */}
+        <div className="mb-12">
+          <h3 className="fade-up font-heading font-bold text-2xl sm:text-3xl text-foreground mb-8">
+            More AI projects
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {aiProjects.map((project, i) => (
+              <a
+                key={project.title}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`fade-up stagger-${i + 1} bento-card rounded-2xl p-6 sm:p-8 group block`}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h4 className="font-heading font-bold text-lg text-foreground group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h4>
+                    <span className="text-xs text-muted-foreground">{project.period}</span>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1" />
+                </div>
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {project.tech.map((t) => (
+                    <span key={t} className="tag-pill text-[10px]">{t}</span>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {project.description}
+                </p>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Older Experiments (collapsible) ── */}
+        <div className="fade-up">
+          <button
+            onClick={() => setShowOlder(!showOlder)}
+            className="group flex items-center gap-2 text-sm font-heading font-semibold text-muted-foreground hover:text-primary transition-colors mb-4"
+          >
+            <ChevronDown
+              className={`w-4 h-4 transition-transform duration-300 ${showOlder ? "rotate-180" : ""}`}
+            />
+            Other experiments
+          </button>
+
+          <div
+            className={`grid grid-cols-1 md:grid-cols-2 gap-4 overflow-hidden transition-all duration-500 ${
+              showOlder ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
+            {olderProjects.map((project) => (
+              <a
+                key={project.title}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bento-card rounded-2xl p-6 group block"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div>
+                    <h4 className="font-heading font-semibold text-base text-foreground group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h4>
+                    <span className="text-xs text-muted-foreground">{project.period}</span>
+                  </div>
+                  <ExternalLink className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-primary transition-colors shrink-0 mt-1" />
+                </div>
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {project.tech.map((t) => (
+                    <span key={t} className="tag-pill text-[10px]">{t}</span>
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {project.description}
+                </p>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
