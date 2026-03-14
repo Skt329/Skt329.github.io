@@ -2,6 +2,8 @@ import { Github, Linkedin, Mail, Download, ChevronDown, ArrowRight, MapPin } fro
 import { useEffect, useRef } from "react";
 
 const codeLines = [
+  { indent: 0, text: '// saurabh tiwari ·', highlight: ' ai engineer', rest: '' },
+  { indent: 0, text: '', highlight: '', rest: '' },
   { indent: 0, text: 'const', highlight: 'pipeline', rest: ' = new RAGPipeline({' },
   { indent: 1, text: 'embeddings:', highlight: '"gemini-embedding-001"', rest: ',' },
   { indent: 1, text: 'vectorStore:', highlight: '"supabase-pgvector"', rest: ',' },

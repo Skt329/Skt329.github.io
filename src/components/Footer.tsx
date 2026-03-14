@@ -37,7 +37,7 @@ const Footer = () => {
             href="mailto:st108113@gmail.com"
             className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-heading font-semibold tracking-wide hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5"
           >
-            Get in touch
+            Send me an email
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
         </div>
