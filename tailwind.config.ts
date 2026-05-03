@@ -19,8 +19,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				heading: ['"Syne"', "sans-serif"],
-				body: ['"DM Sans"', "sans-serif"],
+				heading: ['"Bricolage Grotesque"', "sans-serif"],
+				body: ['"IBM Plex Mono"', "monospace"],
 			},
 			colors: {
 				border: "hsl(var(--border))",
@@ -57,18 +57,18 @@ export default {
 					foreground: "hsl(var(--card-foreground))",
 				},
 				surface: {
-					DEFAULT: "#111118",
-					light: "#1a1a24",
-					lighter: "#222230",
+					DEFAULT: "hsl(var(--surface))",
+					light: "hsl(var(--surface-light))",
 				},
-				neon: {
-					DEFAULT: "#00e5a0",
-					dim: "#00e5a0cc",
-					muted: "#00e5a066",
+				coral: {
+					DEFAULT: "#ff6b4a",
+					dim: "#ff6b4acc",
+					muted: "#ff6b4a44",
 				},
-				indigo: {
-					DEFAULT: "#6366f1",
-					dim: "#6366f1cc",
+				gold: {
+					DEFAULT: "#ffd93d",
+					dim: "#ffd93dcc",
+					muted: "#ffd93d44",
 				},
 			},
 			borderRadius: {
@@ -85,25 +85,27 @@ export default {
 					from: { height: "var(--radix-accordion-content-height)" },
 					to: { height: "0" },
 				},
+				"mesh-drift": {
+					"0%": { transform: "translate(0, 0) scale(1)" },
+					"33%": { transform: "translate(3%, -2%) scale(1.05)" },
+					"66%": { transform: "translate(-2%, 4%) scale(0.98)" },
+					"100%": { transform: "translate(1%, -1%) scale(1.02)" },
+				},
 				"fade-in-up": {
-					"0%": { opacity: "0", transform: "translateY(24px)" },
+					"0%": { opacity: "0", transform: "translateY(28px)" },
 					"100%": { opacity: "1", transform: "translateY(0)" },
 				},
-				"slide-in-right": {
-					"0%": { opacity: "0", transform: "translateX(-24px)" },
-					"100%": { opacity: "1", transform: "translateX(0)" },
-				},
-				shimmer: {
-					"0%": { backgroundPosition: "-200% 0" },
-					"100%": { backgroundPosition: "200% 0" },
+				"scroll-bounce": {
+					"0%, 100%": { transform: "translateY(0)", opacity: "1" },
+					"50%": { transform: "translateY(10px)", opacity: "0.4" },
 				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
+				"mesh-drift": "mesh-drift 20s ease-in-out infinite alternate",
 				"fade-in-up": "fade-in-up 0.6s ease-out forwards",
-				"slide-in-right": "slide-in-right 0.5s ease-out forwards",
-				shimmer: "shimmer 3s linear infinite",
+				"scroll-bounce": "scroll-bounce 2.5s ease-in-out infinite",
 			},
 		},
 	},

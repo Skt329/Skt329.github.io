@@ -18,32 +18,21 @@ interface SkillGroup {
   gridArea: string;
 }
 
-/*
-  Bento layout (3 cols):
-  ┌──────────────────────┬───────────┐
-  │   AI / ML            │ Languages │
-  ├──────────┬───────────┼───────────┤
-  │ Frontend │ Backend   │ Database  │
-  ├──────────┴───────────┴───────────┤
-  │        Tools & Platforms         │
-  └──────────────────────────────────┘
-*/
-
 const skillGroups: SkillGroup[] = [
   {
     category: "AI / ML",
     icon: Brain,
-    accent: "text-emerald-400",
-    accentBg: "bg-emerald-400/10",
-    skills: ["OpenAI API", "Google Gemini", "LangChain", "LangGraph", "RAG", "Hugging Face", "Ollama"],
+    accent: "text-coral",
+    accentBg: "bg-coral/10",
+    skills: ["OpenAI API", "Azure OpenAI", "Google Gemini", "LangChain", "LangGraph", "RAG", "MCP", "Hugging Face", "Ollama"],
     gridArea: "ai",
   },
   {
     category: "Languages",
     icon: Terminal,
-    accent: "text-violet-400",
-    accentBg: "bg-violet-400/10",
-    skills: ["JavaScript", "Python"],
+    accent: "text-gold",
+    accentBg: "bg-gold/10",
+    skills: ["JavaScript", "TypeScript", "Python"],
     gridArea: "lang",
   },
   {
@@ -65,9 +54,9 @@ const skillGroups: SkillGroup[] = [
   {
     category: "Database",
     icon: HardDrive,
-    accent: "text-rose-400",
-    accentBg: "bg-rose-400/10",
-    skills: ["MongoDB", "MySQL", "Supabase", "pgvector"],
+    accent: "text-violet-400",
+    accentBg: "bg-violet-400/10",
+    skills: ["PostgreSQL", "Supabase", "pgvector", "MongoDB", "MySQL"],
     gridArea: "db",
   },
   {
@@ -75,7 +64,7 @@ const skillGroups: SkillGroup[] = [
     icon: Wrench,
     accent: "text-teal-400",
     accentBg: "bg-teal-400/10",
-    skills: ["Git", "VS Code", "Cursor", "Claude Code", "N8N", "Puppeteer"],
+    skills: ["Git", "Vercel", "N8N", "Claude Code", "Cursor", "Puppeteer"],
     gridArea: "tools",
   },
 ];
@@ -84,7 +73,7 @@ const SkillCard = ({ group, className = "" }: { group: SkillGroup; className?: s
   const Icon = group.icon;
   return (
     <div
-      className={`fade-up rounded-2xl border border-border bg-surface/40 p-5 sm:p-6 transition-all duration-400 hover:bg-surface/70 hover:border-muted-foreground/20 hover:shadow-lg hover:shadow-black/20 ${className}`}
+      className={`reveal rounded-2xl border border-border bg-surface/40 p-5 sm:p-6 transition-all duration-400 hover:bg-surface-light hover:border-muted-foreground/20 hover:shadow-lg hover:shadow-black/20 ${className}`}
       style={{ gridArea: group.gridArea }}
     >
       <div className="flex items-center gap-3 mb-4">
@@ -116,12 +105,15 @@ const Skills = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
         });
       },
-      { threshold: 0.08 }
+      { threshold: 0.06 }
     );
-    const els = sectionRef.current?.querySelectorAll(".fade-up");
+    const els = sectionRef.current?.querySelectorAll(".reveal");
     els?.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
@@ -130,14 +122,14 @@ const Skills = () => {
     <section ref={sectionRef} className="py-24 px-6" id="skills">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <span className="fade-up stagger-1 text-primary text-sm font-heading font-semibold tracking-widest uppercase block mb-4">
+          <span className="reveal stagger-1 text-primary text-sm font-heading font-semibold tracking-[0.2em] uppercase block mb-4">
             Toolkit
           </span>
-          <h2 className="fade-up stagger-2 font-heading font-bold text-4xl sm:text-5xl text-foreground mb-4">
+          <h2 className="reveal stagger-2 font-heading font-bold text-4xl sm:text-5xl text-foreground mb-4">
             Technologies I work with
           </h2>
-          <p className="fade-up stagger-3 text-muted-foreground max-w-lg mx-auto">
-            From React frontends to Python AI pipelines to Node.js backends.
+          <p className="reveal stagger-3 text-muted-foreground text-sm max-w-lg mx-auto">
+            From React frontends to Python AI pipelines to Node.js backends — comfortable across the full stack.
           </p>
         </div>
 
@@ -162,7 +154,7 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Mobile fallback — single column */}
+        {/* Mobile/tablet grid fallback */}
         <style>{`
           @media (max-width: 640px) {
             .grid[style] {

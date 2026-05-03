@@ -1,22 +1,34 @@
 import { useEffect, useRef, useState } from "react";
 import { ExternalLink, ArrowUpRight, Calendar, ChevronDown } from "lucide-react";
 
-/* ──────────────────────────────
-   Featured Projects (case-study)
-   ────────────────────────────── */
-
+/* ── Featured Projects ── */
 const featured = [
+  {
+    title: "NeutriAI",
+    link: "https://skt329-neutri-ai.vercel.app",
+    period: "Jan 2026 — Present",
+    tech: ["Next.js", "TypeScript", "Azure OpenAI", "Supabase", "pgvector", "Swiggy MCP"],
+    tagline: "Agentic nutrition assistant with live commerce integration",
+    description:
+      "Mobile-first PWA with an agentic core: meal logging via natural language, pantry management, recipe generation, and Swiggy food ordering. 15+ tools orchestrated through Vercel AI SDK with streaming tool-calling loops.",
+    stats: [
+      { value: "15+", label: "Tools orchestrated", sub: "Vercel AI SDK" },
+      { value: "<2s", label: "Chat latency", sub: "semantic memory" },
+      { value: "1024", label: "Dim embeddings", sub: "NVIDIA NeMo" },
+      { value: "0.92", label: "Dedup threshold", sub: "cosine similarity" },
+    ],
+  },
   {
     title: "Synth News",
     link: "https://synthnews.vercel.app/",
     period: "Jul 2025 — Present",
     tech: ["React", "Supabase", "Gemini AI", "RAG", "N8N"],
-    tagline: "AI-powered news aggregation that actually saves money",
+    tagline: "AI news aggregation that cuts costs 67%",
     description:
-      "Processes 1,000+ articles daily from 15+ trusted publishers using vector embeddings and semantic clustering. A hybrid search system combines vector-based semantic search with external news APIs, delivering sub-second response times.",
+      "Processes 1,000+ articles daily from 15+ publishers using vector embeddings and semantic clustering. Hybrid search combines vector-based semantic search with external news APIs at sub-second response times.",
     stats: [
       { value: "$5/day", label: "Operating cost", sub: "down from $15/day" },
-      { value: "50%", label: "API cost cut", sub: "via batch processing" },
+      { value: "67%", label: "Cost reduction", sub: "via batch processing" },
       { value: "15+", label: "News publishers", sub: "aggregated daily" },
       { value: "<1s", label: "Search response", sub: "sub-second queries" },
     ],
@@ -28,7 +40,7 @@ const featured = [
     tech: ["Python", "Chatterbox TTS", "Local Inference"],
     tagline: "PDF to audiobook, entirely on your machine",
     description:
-      "Windows desktop app powered by the 350M-parameter Chatterbox Turbo TTS model. Converts full PDF books into audiobooks with zero cloud dependency, including zero-shot voice cloning from a 10-second reference sample.",
+      "Windows desktop app powered by the 350M-parameter Chatterbox Turbo TTS model. Zero cloud dependency, including zero-shot voice cloning from a 10-second reference sample.",
     stats: [
       { value: "350M", label: "TTS parameters", sub: "Chatterbox Turbo" },
       { value: "0", label: "Cloud dependency", sub: "fully local" },
@@ -38,10 +50,7 @@ const featured = [
   },
 ];
 
-/* ──────────────────────────
-   AI Projects (main grid)
-   ────────────────────────── */
-
+/* ── More AI Projects ── */
 const aiProjects = [
   {
     title: "AI Chrome Extension",
@@ -61,11 +70,16 @@ const aiProjects = [
   },
 ];
 
-/* ──────────────────────────
-   Older experiments (collapsed)
-   ────────────────────────── */
-
-const olderProjects = [
+/* ── Experiments ── */
+const experiments = [
+  {
+    title: "Monopoly Deals",
+    period: "2025",
+    tech: ["Next.js", "Supabase", "TypeScript"],
+    link: "https://monopoly-deals.vercel.app",
+    description:
+      "Web version of the Monopoly Deal card game with real-time multiplayer, game state management, and interactive card mechanics.",
+  },
   {
     title: "BVote",
     period: "Feb — May 2024",
@@ -84,18 +98,21 @@ const olderProjects = [
 
 const Projects = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const [showOlder, setShowOlder] = useState(false);
+  const [showExperiments, setShowExperiments] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
         });
       },
-      { threshold: 0.06 }
+      { threshold: 0.04 }
     );
-    const els = sectionRef.current?.querySelectorAll(".fade-up, .fade-left, .fade-right");
+    const els = sectionRef.current?.querySelectorAll(".reveal, .reveal-left, .reveal-right");
     els?.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
@@ -105,20 +122,21 @@ const Projects = () => {
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <div className="mb-20">
-          <span className="fade-up stagger-1 text-primary text-sm font-heading font-semibold tracking-widest uppercase block mb-4">
+          <span className="reveal stagger-1 text-primary text-sm font-heading font-semibold tracking-[0.2em] uppercase block mb-4">
             Featured Work
           </span>
-          <h2 className="fade-up stagger-2 font-heading font-bold text-4xl sm:text-5xl md:text-6xl text-foreground max-w-3xl leading-tight">
-            Projects that solve real problems
+          <h2 className="reveal stagger-2 font-heading font-bold text-4xl sm:text-5xl md:text-6xl text-foreground max-w-3xl leading-tight">
+            Projects that ship,{" "}
+            <span className="text-gradient">not just demos.</span>
           </h2>
         </div>
 
-        {/* ── Featured Projects (case-study) ── */}
-        <div className="space-y-12 mb-20">
-          {featured.map((project) => (
+        {/* Featured Projects */}
+        <div className="space-y-10 mb-20">
+          {featured.map((project, idx) => (
             <div
               key={project.title}
-              className="fade-up featured-card rounded-3xl overflow-hidden"
+              className={`reveal stagger-${Math.min(idx + 1, 3)} featured-card rounded-3xl overflow-hidden`}
             >
               <div className="p-8 sm:p-10 md:p-12">
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
@@ -153,7 +171,7 @@ const Projects = () => {
                   ))}
                 </div>
 
-                <p className="text-muted-foreground leading-relaxed max-w-2xl mb-10">
+                <p className="text-muted-foreground text-sm leading-relaxed max-w-2xl mb-10">
                   {project.description}
                 </p>
 
@@ -166,7 +184,7 @@ const Projects = () => {
                       <div className="font-heading font-extrabold text-xl sm:text-2xl text-primary mb-0.5">
                         {stat.value}
                       </div>
-                      <div className="text-xs text-foreground font-medium">{stat.label}</div>
+                      <div className="text-[11px] text-foreground font-medium">{stat.label}</div>
                       <div className="text-[10px] text-muted-foreground mt-0.5">{stat.sub}</div>
                     </div>
                   ))}
@@ -176,9 +194,9 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* ── AI Projects Grid ── */}
+        {/* More AI Projects */}
         <div className="mb-12">
-          <h3 className="fade-up font-heading font-bold text-2xl sm:text-3xl text-foreground mb-8">
+          <h3 className="reveal font-heading font-bold text-2xl sm:text-3xl text-foreground mb-8">
             More AI projects
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -188,7 +206,7 @@ const Projects = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`fade-up stagger-${i + 1} bento-card rounded-2xl p-6 sm:p-8 group block`}
+                className={`reveal stagger-${i + 1} bento-card rounded-2xl p-6 sm:p-8 group block`}
               >
                 <div className="flex items-start justify-between mb-4">
                   <div>
@@ -204,7 +222,7 @@ const Projects = () => {
                     <span key={t} className="tag-pill text-[10px]">{t}</span>
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                   {project.description}
                 </p>
               </a>
@@ -212,24 +230,24 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* ── Older Experiments (collapsible) ── */}
-        <div className="fade-up">
+        {/* Experiments (collapsible) */}
+        <div className="reveal">
           <button
-            onClick={() => setShowOlder(!showOlder)}
+            onClick={() => setShowExperiments(!showExperiments)}
             className="group flex items-center gap-2 text-sm font-heading font-semibold text-muted-foreground hover:text-primary transition-colors mb-4"
           >
             <ChevronDown
-              className={`w-4 h-4 transition-transform duration-300 ${showOlder ? "rotate-180" : ""}`}
+              className={`w-4 h-4 transition-transform duration-300 ${showExperiments ? "rotate-180" : ""}`}
             />
-            Other experiments
+            Experiments & side projects
           </button>
 
           <div
-            className={`grid grid-cols-1 md:grid-cols-2 gap-4 overflow-hidden transition-all duration-500 ${
-              showOlder ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+            className={`grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden transition-all duration-500 ${
+              showExperiments ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
             }`}
           >
-            {olderProjects.map((project) => (
+            {experiments.map((project) => (
               <a
                 key={project.title}
                 href={project.link}
