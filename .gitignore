@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.skill/portfolio-website-skill/SKILL.md
+.skill/portfolio-website-skill/references/animation-library.md
+.skill/portfolio-website-skill/references/color-palettes.md
+.skill/portfolio-website-skill/references/section-copy-templates.md

@@ -20,26 +20,12 @@
 \usepackage{tabularx}
 \input{glyphtounicode}
 
-
-%----------FONT OPTIONS----------
-% sans-serif
-% \usepackage[sfdefault]{FiraSans}
-% \usepackage[sfdefault]{roboto}
-% \usepackage[sfdefault]{noto-sans}
-% \usepackage[default]{sourcesanspro}
-
-% serif
-% \usepackage{CormorantGaramond}
-% \usepackage{charter}
-
-
 \pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
+\fancyhf{}
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Adjust margins
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
@@ -52,12 +38,10 @@
 \raggedright
 \setlength{\tabcolsep}{0in}
 
-% Sections formatting
 \titleformat{\section}{
   \vspace{-4pt}\scshape\raggedright\large
 }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
 
-% Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
 
 %-------------------------
@@ -102,29 +86,23 @@
 %-------------------------------------------
 %%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \begin{document}
 
 %----------HEADING----------
-% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
-%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
-% \end{tabular*}
-
 \begin{center}
     \textbf{\Huge \scshape Saurabh Tiwari} \\ \vspace{1pt}
-    \small+91-9721405709 $|$ 
-    \href{mailto:st108113@gmail.com}{st108113@gmail.com} $|$ 
-    \href{https://skt329.github.io}{Portfolio: skt329.github.io} $|$
+    \small +91-9721405709 $|$
+    \href{mailto:st108113@gmail.com}{st108113@gmail.com} $|$
+    \href{https://skt329.github.io}{skt329.github.io} $|$
     \href{https://linkedin.com/in/saurabht0}{linkedin.com/in/saurabht0} $|$
-     \href{https://github.com/Skt329}{github.com/Skt329}
+    \href{https://github.com/Skt329}{github.com/Skt329}
 \end{center}
 
 %-----------SUMMARY-----------
 \section{Summary}
 \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-   AI Engineer and full-stack developer specializing in LLM integration, RAG pipelines, and local AI inference. Since graduating in 2024, independently architected and shipped four production AI applications — including Synth News, a news platform that reduced operational costs 67\% through vector search and batch API architecture. Comfortable across the full stack from React frontends to Python desktop apps to Node.js backends.
+    AI Engineer specializing in agentic AI systems, RAG pipelines, and LLM integration. Since graduating in 2024, shipped four production AI apps including NeutriAI, a PWA with 15+ orchestrated tools, semantic long-term memory, and live Swiggy MCP commerce integration. Comfortable across the full stack from Next.js frontends to Python desktop apps to Node.js backends.
     }}
 \end{itemize}
 
@@ -132,28 +110,25 @@
 \section{Education}
   \resumeSubHeadingListStart
     \resumeSubheading
-      {Babashaheb Bhimrao Ambedkar University  }{Lucknow(U.P.), India}
+      {Babashaheb Bhimrao Ambedkar University}{Lucknow (U.P.), India}
       {Master of Computer Application}{Aug 2022 -- May 2024}
     \resumeSubheading
-      {Ram Manohar Lohia Awadh University}{Ayodhya(U.P.), India}
+      {Ram Manohar Lohia Awadh University}{Ayodhya (U.P.), India}
       {Bachelor of Science}{Aug 2018 -- May 2021}
   \resumeSubHeadingListEnd
 
-  
-%-----------PROGRAMMING SKILLS-----------
+%-----------TECHNICAL SKILLS-----------
 \section{Technical Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-    \textbf{Languages}{: JavaScript, Python} \\
-     \textbf{Frontend Technologies}{: HTML, CSS, React.js} \\
-     \textbf{Backend \& APIs}{: Express.js, Node.js, REST APIs} \\
-     \textbf{AI/ML}{: OpenAI API, Google Gemini, LangChain, LangGraph, RAG} \\
-     \textbf{Tools \& Platforms}{: Git, VS Code, Cursor, Claude Code, N8N} \\
-     \textbf{Database}{: MongoDB, MySQL}\\
-     
+     \textbf{Languages}{: JavaScript, TypeScript, Python} \\
+     \textbf{Frontend}{: React.js, Next.js, HTML, CSS, Tailwind CSS} \\
+     \textbf{Backend \& APIs}{: Node.js, Express.js, REST APIs} \\
+     \textbf{AI/ML}{: OpenAI API, Azure OpenAI, Google Gemini, LangChain, LangGraph, RAG, MCP} \\
+     \textbf{Database}{: PostgreSQL, Supabase, pgvector, MongoDB, MySQL} \\
+     \textbf{Tools \& Platforms}{: Git, Vercel, N8N, Claude Code, Cursor} \\
     }}
  \end{itemize}
-
 
 %-----------CERTIFICATIONS-----------
 \section{Certifications}
@@ -166,59 +141,36 @@
       {\textbf{\href{https://academy.langchain.com/certificates/2kllefhgct}{Introduction to LangChain}} $|$ \emph{LangChain Academy}}{Mar 2026}
 \resumeSubHeadingListEnd
 
- 
 %-----------PROJECTS-----------
 \section{Projects}
+
+\resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{\href{https://skt329-neutri-ai.vercel.app}{NeutriAI}} $|$ \emph{Next.js, TypeScript, Azure OpenAI, Supabase, pgvector, Swiggy MCP}}{Jan 2026 -- Present}
+          \resumeItemListStart
+            \resumeItem{Architected a mobile-first PWA with an agentic core handling meal logging (natural language to macro estimates), pantry management, recipe generation, and Swiggy food ordering via 15+ tools orchestrated through Vercel AI SDK with streaming tool-calling loops (max 10 steps/turn).}
+            \resumeItem{Built long-term semantic memory using NVIDIA NeMo Retriever (1024-dim embeddings), deferred extraction via pg\_cron, and cosine dedup at 0.92 threshold, keeping chat latency under 2 seconds while preventing memory bloat across sessions.}
+            \resumeItem{Integrated Swiggy MCP (Food + Instamart) with OAuth 2.1 + PKCE and AES-256-GCM token storage; all writes (meal logs, pantry updates, orders) go through user-confirmation cards, eliminating silent data mutations.}
+          \resumeItemListEnd
+\resumeSubHeadingListEnd
+
 \resumeSubHeadingListStart
       \resumeProjectHeading
           {\textbf{\href{https://synthnews.vercel.app}{Synth News}} $|$ \emph{React, Supabase, Gemini AI, RAG}}{Jul 2025 -- Present}
           \resumeItemListStart
-            \resumeItem{Architected and deployed an AI-powered news aggregation platform that processes 1,000+ articles daily from 15+ trusted publishers, utilizing vector embeddings and semantic clustering (0.82 similarity threshold) to synthesize multi-source stories.}
-             \resumeItem{Engineered automated news processing pipeline integrating RSS webhooks, web scraping, and batch embedding generation, achieving 2–3 hour publication latency.}
-            \resumeItem{Implemented cost-optimized architecture leveraging batch API processing (50\% cost reduction), vector database similarity search reducing operational costs from \$15/day to \$5/day.}
-            \resumeItem{Built a RESTful API and hybrid search system combining vector-based semantic search (70\% query coverage) with external news APIs, delivering sub-second response times and reducing search costs by 95\% (\$1,380/month vs \$10,500/month for pure API approach).}
+            \resumeItem{Architected an AI-powered news platform processing 1,000+ articles daily from 15+ publishers, using vector embeddings and semantic clustering (0.82 similarity threshold) to synthesize multi-source stories; cut operational costs from \$15/day to \$5/day through batch API processing and vector similarity search.}
+            \resumeItem{Built a hybrid search system combining semantic vector search (70\% query coverage) with external news APIs, reducing monthly search costs 95\% (\$1,380 vs \$10,500 for a pure API approach) at sub-second response times.}
           \resumeItemListEnd
-      
-    \resumeSubHeadingListEnd
-    
+\resumeSubHeadingListEnd
 
 \resumeSubHeadingListStart
       \resumeProjectHeading
           {\textbf{\href{https://github.com/Skt329/pdf-audiobook}{Audiobook Creator}} $|$ \emph{Python, Chatterbox TTS}}{Aug 2025 -- Present}
           \resumeItemListStart
-            \resumeItem{Built a Windows desktop application powered by the open-source Chatterbox Turbo (350M parameter TTS model) to convert PDF books into full-length audiobooks with zero cloud dependency, running entirely on local CPU/GPU.}
-            \resumeItem{Developed an intelligent PDF chunking pipeline enabling users to preview and edit each text segment before conversion, with automatic WAV merging producing a single output file (480MB per 100-page book at 24kHz). }
-            \resumeItem{Integrated zero-shot voice cloning from a 10-second reference audio sample, enabling personalized audiobooks in any target speaker's voice without additional training.}
+            \resumeItem{Built a Windows desktop app powered by the open-source Chatterbox Turbo (350M parameter TTS model) to convert PDF books into full audiobooks with zero cloud dependency, running entirely on local CPU/GPU with automatic WAV merging (480MB per 100 pages at 24kHz).}
+            \resumeItem{Integrated zero-shot voice cloning from a 10-second reference audio sample alongside an intelligent chunking pipeline that lets users preview and edit each text segment before conversion.}
           \resumeItemListEnd
-      
-    \resumeSubHeadingListEnd
-      
- 
- 
-\resumeSubHeadingListStart
-      \resumeProjectHeading
-          {\textbf{\href{https://github.com/Skt329/AI-Chrome-Extension}{AI Chrome Extension}} $|$ \emph{HTML, CSS, JavaScript}}{Mar 2025 -- Jul 2025}
-          \resumeItemListStart
-            \resumeItem{Shipped a privacy-first Chrome extension integrating Ollama's local inference API, enabling AI-powered webpage summarization and chat with support for any locally-hosted open-source model (Llama, Mistral, Gemma, Phi, and others).}
-             \resumeItem{Implemented real-time DOM content extraction feeding a persistent side-panel chat interface, with a dynamic model selector supporting seamless switching between locally-installed LLMs.}
-            \resumeItem{Designed custom system prompt configuration allowing per-session AI behavior tuning without any cloud dependency or data leaving the device.}
-          \resumeItemListEnd
-      
-    \resumeSubHeadingListEnd
-\resumeSubHeadingListStart
-      \resumeProjectHeading
-          {\textbf{\href{https://t.me/phoenix_7ai_bot}{Phoenix AI Telegram Bot}} $|$ \emph{JavaScript, Node.js, Puppeteer}}{Oct 2024 -- Jan 2025}
-          \resumeItemListStart
-            \resumeItem{Architected a unified multi-model Telegram AI assistant supporting 3 API providers (OpenAI, Google Gemini, Mistral) with seamless mid-conversation model switching based on task type. }
-            \resumeItem{Engineered YouTube-aware function-calling pipeline using Puppeteer to scrape video transcripts, enabling contextual Q\&A on videos of any length. }
-            \resumeItem{Integrated Stable Diffusion XL via Hugging Face for on-demand image generation and Whisper-based speech-to-text for voice note processing — all within a single Telegram interface.}
-  
-            
-          \resumeItemListEnd
-      
-    \resumeSubHeadingListEnd
-   
-
+\resumeSubHeadingListEnd
 
 %-------------------------------------------
 \end{document}
