@@ -34,6 +34,21 @@ const featured = [
     ],
   },
   {
+    title: "ContextAI",
+    link: "https://github.com/Skt329/contextAI",
+    period: "May 2026 — Present",
+    tech: ["Tauri", "Rust", "React", "FastAPI", "Python", "ChromaDB"],
+    tagline: "System-wide personal AI command center for Windows",
+    description:
+      "Enterprise-grade desktop assistant featuring a non-intrusive floating UI, 4-layer memory engine for persistent context, and hybrid RAG pipeline. Injects AI responses directly into any active application via Win32 API hooking.",
+    stats: [
+      { value: "4-Layer", label: "Memory engine", sub: "persistent context" },
+      { value: "Hybrid", label: "RAG search", sub: "ChromaDB + BM25S" },
+      { value: "Win32", label: "API hooking", sub: "system-wide injection" },
+      { value: "Local", label: "Execution", sub: "Ollama capable" },
+    ],
+  },
+  {
     title: "Audiobook Creator",
     link: "https://github.com/Skt329/pdf-audiobook",
     period: "Aug 2025 — Present",
