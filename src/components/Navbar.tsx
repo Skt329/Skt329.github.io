@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Projects", href: "#projects" },
@@ -9,118 +10,96 @@ const navLinks = [
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeSection, setActiveSection] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
-      const total = document.body.scrollHeight - window.innerHeight;
-      if (total > 0) setScrollProgress((window.scrollY / total) * 100);
-
-      const sections = document.querySelectorAll("section[id]");
-      let current = "";
-      sections.forEach((section) => {
-        if (window.scrollY >= (section as HTMLElement).offsetTop - 120) {
-          current = section.id;
-        }
-      });
-      setActiveSection(current);
+      if (progressRef.current) {
+        const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        progressRef.current.style.width = `${pct}%`;
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [mobileOpen]);
+  }, [menuOpen]);
 
   return (
     <>
       {/* Scroll progress bar */}
-      <div
-        className="scroll-progress"
-        style={{ width: `${scrollProgress}%` }}
-      />
+      <div ref={progressRef} className="scroll-progress" />
 
-      <nav
-        className={`fixed top-0.5 left-0 right-0 z-50 transition-all duration-500 ${
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-lg shadow-black/30"
+            ? "border-b border-border/50 bg-background/80 backdrop-blur-xl"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+        <nav
+          className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
+          aria-label="Main navigation"
+        >
+          {/* Logo */}
           <a
-            href="#"
-            className="font-heading font-bold text-xl tracking-tight text-foreground hover:text-primary transition-colors"
+            href="#hero"
+            className="font-heading font-bold text-lg text-foreground hover:text-primary transition-colors tracking-tight"
+            aria-label="Saurabh Tiwari — Home"
           >
-            ST<span className="text-primary">.</span>
+            <span className="text-gradient">ST</span>
+            <span className="text-muted-foreground/60 ml-0.5 text-sm font-mono">.dev</span>
           </a>
 
-          {/* Desktop nav */}
-          <ul className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.href}>
+          {/* Desktop links */}
+          <ul className="hidden md:flex items-center gap-1" role="list">
+            {navLinks.map(({ label, href }) => (
+              <li key={label}>
                 <a
-                  href={link.href}
-                  className={`text-sm font-medium transition-colors duration-300 relative group ${
-                    activeSection === link.href.slice(1)
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
-                  }`}
+                  href={href}
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-surface-light transition-all duration-200"
                 >
-                  {link.label}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300 ${
-                      activeSection === link.href.slice(1) ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
-                  />
+                  {label}
                 </a>
               </li>
             ))}
           </ul>
 
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2 z-50 relative"
-            aria-label="Toggle menu"
-            aria-expanded={mobileOpen}
-          >
-            <span
-              className={`block w-5 h-0.5 bg-foreground transition-all duration-300 ${
-                mobileOpen ? "rotate-45 translate-y-2" : ""
-              }`}
-            />
-            <span
-              className={`block w-5 h-0.5 bg-foreground transition-all duration-300 ${
-                mobileOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block w-5 h-0.5 bg-foreground transition-all duration-300 ${
-                mobileOpen ? "-rotate-45 -translate-y-2" : ""
-              }`}
-            />
-          </button>
-        </div>
-      </nav>
+          {/* CTA + mobile toggle */}
+          <div className="flex items-center gap-3">
+            <a
+              href="mailto:st108113@gmail.com"
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-primary/30 text-xs font-heading font-semibold text-primary hover:bg-primary/10 transition-all duration-200"
+            >
+              Hire me
+            </a>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl border border-border text-muted-foreground hover:text-foreground hover:bg-surface-light transition-all"
+              aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
+          </div>
+        </nav>
+      </header>
 
-      {/* Full-overlay mobile menu */}
-      <div className={`nav-overlay ${mobileOpen ? "open" : ""}`}>
-        {navLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            onClick={() => setMobileOpen(false)}
-            className="font-heading"
-          >
-            {link.label}
+      {/* Mobile overlay */}
+      <div className={`nav-overlay ${menuOpen ? "open" : ""}`} role="dialog" aria-modal="true">
+        {navLinks.map(({ label, href }) => (
+          <a key={label} href={href} onClick={() => setMenuOpen(false)}>
+            {label}
           </a>
         ))}
+        <a href="mailto:st108113@gmail.com" onClick={() => setMenuOpen(false)} className="!text-primary">
+          Hire me
+        </a>
       </div>
     </>
   );

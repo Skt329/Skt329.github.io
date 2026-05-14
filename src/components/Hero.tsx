@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Download, ChevronDown, ArrowRight, MapPin } from "lucide-react";
+import { Github, Linkedin, Mail, Download, ChevronDown, ArrowRight, MapPin, Package } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 const Hero = () => {
@@ -21,62 +21,29 @@ const Hero = () => {
     return () => observer.disconnect();
   }, []);
 
-  /* Cursor glow effect */
-  useEffect(() => {
-    const hero = sectionRef.current;
-    if (!hero) return;
-    const onMove = (e: MouseEvent) => {
-      const rect = hero.getBoundingClientRect();
-      hero.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
-      hero.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
-    };
-    hero.addEventListener("mousemove", onMove);
-    return () => hero.removeEventListener("mousemove", onMove);
-  }, []);
-
   return (
     <section
       ref={sectionRef}
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-20 overflow-hidden"
     >
-      {/* Gradient mesh background */}
-      <div className="absolute inset-0 -z-10 mesh-gradient" />
-
-      {/* Cursor glow */}
-      <div
-        className="absolute -z-10 w-[500px] h-[500px] rounded-full pointer-events-none opacity-[0.07] hidden lg:block"
-        style={{
-          top: "calc(var(--mouse-y, 50%) - 250px)",
-          left: "calc(var(--mouse-x, 50%) - 250px)",
-          background: "radial-gradient(circle, hsl(11 100% 64%) 0%, transparent 70%)",
-          transition: "top 0.15s ease-out, left 0.15s ease-out",
-        }}
-      />
-
-      {/* Faint grid */}
-      <div
-        className="absolute inset-0 -z-10 opacity-[0.02]"
-        style={{
-          backgroundImage:
-            "linear-gradient(hsl(11 100% 64% / 0.3) 1px, transparent 1px), linear-gradient(90deg, hsl(11 100% 64% / 0.3) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+      {/* Animated mesh background */}
+      <div className="mesh-gradient absolute inset-0 -z-10" />
+      {/* Dot grid */}
+      <div className="dot-grid absolute inset-0 -z-10" />
 
       <div className="max-w-6xl mx-auto w-full">
-        {/* Top bar — status + socials */}
-        <div className="reveal stagger-1 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-14">
-          <div className="flex items-center gap-4 flex-wrap">
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-surface/50">
+
+        {/* Top row — status badge + social links */}
+        <div className="reveal stagger-1 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-16">
+          <div className="flex items-center gap-3 flex-wrap">
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-primary/20 bg-primary/5">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-xs font-medium text-muted-foreground tracking-wide">
-                Open to opportunities
-              </span>
+              <span className="text-xs font-medium text-primary/90 tracking-wide font-mono">Available for opportunities</span>
             </div>
             <div className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/60">
               <MapPin className="w-3 h-3" />
-              Bengaluru India · Open to remote
+              Bengaluru, India · Remote-friendly
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -99,46 +66,49 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Main content */}
+        {/* Main headline */}
         <div className="max-w-4xl">
-          {/* Name label */}
-          <p className="reveal stagger-1 text-sm font-heading font-semibold text-primary tracking-[0.2em] uppercase mb-6">
-            Saurabh Tiwari
+          <p className="reveal stagger-1 text-sm font-mono font-medium text-primary/70 tracking-[0.25em] uppercase mb-5">
+            Saurabh Tiwari · AI Engineer
           </p>
 
-          {/* Headline */}
-          <h1 className="font-heading font-extrabold tracking-tight text-foreground leading-[0.92] mb-8">
-            <span className="reveal stagger-2 block text-4xl sm:text-5xl md:text-6xl lg:text-[4.8rem]">
-              I ship AI systems
+          <h1 className="font-heading font-extrabold tracking-tight text-foreground leading-[0.9] mb-8">
+            <span className="reveal stagger-2 block text-5xl sm:text-6xl md:text-7xl lg:text-[5.2rem] xl:text-[6rem]">
+              Building AI that
             </span>
-            <span className="reveal stagger-3 block text-4xl sm:text-5xl md:text-6xl lg:text-[4.8rem]">
-              that solve{" "}
-              <span className="text-gradient">real problems.</span>
+            <span className="reveal stagger-3 block text-5xl sm:text-6xl md:text-7xl lg:text-[5.2rem] xl:text-[6rem]">
+              <span className="text-gradient">actually ships.</span>
             </span>
           </h1>
 
-          {/* Body */}
-          <p className="reveal stagger-4 max-w-2xl text-muted-foreground text-sm sm:text-base leading-relaxed mb-4">
-            AI Engineer specializing in agentic systems, RAG pipelines, and LLM integration.
-            Shipped{" "}
-            <span className="text-foreground font-medium">4 production AI apps</span> since
-            graduation — including NeutriAI, a PWA with{" "}
-            <span className="text-foreground font-medium">15+ orchestrated tools</span> and live
-            Swiggy MCP commerce.
+          <p className="reveal stagger-4 max-w-2xl text-muted-foreground text-sm sm:text-base leading-relaxed mb-3">
+            AI Engineer building production-grade agentic systems, RAG pipelines, and MCP integrations.
+            Independently shipped{" "}
+            <span className="text-foreground font-medium">6 production apps</span> since MCA graduation —
+            including a published{" "}
+            <a href="https://www.npmjs.com/package/semantic-recall" target="_blank" rel="noopener noreferrer" className="text-primary/80 hover:text-primary underline underline-offset-2 transition-colors">
+              npm package (semantic-recall)
+            </a>{" "}
+            and an agentic PWA with{" "}
+            <span className="text-foreground font-medium">15+ orchestrated tools.</span>
           </p>
 
-          <p className="reveal stagger-4 text-xs text-muted-foreground/50 mb-10">
-            Currently building with{" "}
-            <span className="text-muted-foreground">agentic workflows</span>,{" "}
-            <span className="text-muted-foreground">MCP integrations</span>, and{" "}
-            <span className="text-muted-foreground">semantic memory</span>.
+          <p className="reveal stagger-4 text-xs text-muted-foreground/45 mb-12 font-mono">
+            Stack:{" "}
+            <span className="text-muted-foreground/70">Next.js</span> ·{" "}
+            <span className="text-muted-foreground/70">Python</span> ·{" "}
+            <span className="text-muted-foreground/70">FastAPI</span> ·{" "}
+            <span className="text-muted-foreground/70">Vercel AI SDK</span> ·{" "}
+            <span className="text-muted-foreground/70">pgvector</span> ·{" "}
+            <span className="text-muted-foreground/70">ChromaDB</span> ·{" "}
+            <span className="text-muted-foreground/70">Tauri/Rust</span>
           </p>
 
           {/* CTAs */}
           <div className="reveal stagger-5 flex flex-wrap items-center gap-3">
             <a
               href="#projects"
-              className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-xl bg-primary text-primary-foreground font-heading font-semibold text-sm tracking-wide hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-xl bg-primary text-primary-foreground font-heading font-semibold text-sm tracking-wide hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5"
             >
               View my work
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -147,20 +117,44 @@ const Hero = () => {
               href="https://drive.google.com/file/d/1XVWXvlxU5R8PVge5lEtQM27rHmyn9sS7/view?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-border text-sm font-heading font-semibold text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
+              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-border text-sm font-heading font-semibold text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all duration-300"
             >
               <Download className="w-4 h-4" />
               Resume
             </a>
+            <a
+              href="https://www.npmjs.com/package/semantic-recall"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-primary/20 text-sm font-heading font-semibold text-primary/70 hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+            >
+              <Package className="w-4 h-4" />
+              npm package
+            </a>
           </div>
+        </div>
+
+        {/* Quick stat strip */}
+        <div className="reveal stagger-6 mt-20 pt-10 border-t border-border grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-2xl">
+          {[
+            { value: "6+", label: "Production apps" },
+            { value: "15+", label: "AI tools orchestrated" },
+            { value: "1", label: "Published npm package" },
+            { value: "2024", label: "MCA Graduate" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-left">
+              <div className="stat-number text-2xl sm:text-3xl mb-0.5">{stat.value}</div>
+              <div className="text-xs text-muted-foreground">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Scroll indicator */}
       <a
-        href="#metrics"
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-muted-foreground/30 hover:text-muted-foreground/60 transition-colors"
-        aria-label="Scroll down"
+        href="#projects"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground/30 hover:text-muted-foreground/60 transition-colors"
+        aria-label="Scroll to projects"
       >
         <ChevronDown className="w-5 h-5 animate-scroll-bounce" />
       </a>

@@ -1,19 +1,12 @@
 import { useEffect, useRef } from "react";
-import {
-  Terminal,
-  Code,
-  Database,
-  Brain,
-  Wrench,
-  HardDrive,
-} from "lucide-react";
+import { Terminal, Code, Database, Brain, Wrench, HardDrive } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 interface SkillGroup {
   category: string;
   icon: LucideIcon;
-  accent: string;
-  accentBg: string;
+  color: string;
+  colorBg: string;
   skills: string[];
   gridArea: string;
 }
@@ -22,49 +15,49 @@ const skillGroups: SkillGroup[] = [
   {
     category: "AI / ML",
     icon: Brain,
-    accent: "text-coral",
-    accentBg: "bg-coral/10",
-    skills: ["OpenAI API", "Azure OpenAI", "Google Gemini", "LangChain", "LangGraph", "RAG", "MCP", "Hugging Face", "Ollama"],
+    color: "text-blue-400",
+    colorBg: "bg-blue-400/10",
+    skills: ["OpenAI API", "Azure OpenAI", "Gemini", "LangChain", "LangGraph", "RAG", "MCP", "Hugging Face", "Ollama", "Vercel AI SDK"],
     gridArea: "ai",
   },
   {
     category: "Languages",
     icon: Terminal,
-    accent: "text-gold",
-    accentBg: "bg-gold/10",
-    skills: ["JavaScript", "TypeScript", "Python"],
+    color: "text-violet-400",
+    colorBg: "bg-violet-400/10",
+    skills: ["JavaScript", "TypeScript", "Python", "Rust"],
     gridArea: "lang",
   },
   {
     category: "Frontend",
     icon: Code,
-    accent: "text-sky-400",
-    accentBg: "bg-sky-400/10",
-    skills: ["React.js", "Next.js", "HTML", "CSS", "Tailwind CSS"],
+    color: "text-cyan-400",
+    colorBg: "bg-cyan-400/10",
+    skills: ["React.js", "Next.js", "Tailwind CSS", "HTML", "CSS"],
     gridArea: "front",
   },
   {
     category: "Backend & APIs",
     icon: Database,
-    accent: "text-amber-400",
-    accentBg: "bg-amber-400/10",
-    skills: ["Node.js", "Express.js", "REST APIs"],
+    color: "text-amber-400",
+    colorBg: "bg-amber-400/10",
+    skills: ["Node.js", "Express.js", "FastAPI", "REST APIs"],
     gridArea: "back",
   },
   {
-    category: "Database",
+    category: "Databases",
     icon: HardDrive,
-    accent: "text-violet-400",
-    accentBg: "bg-violet-400/10",
-    skills: ["PostgreSQL", "Supabase", "pgvector", "MongoDB", "MySQL"],
+    color: "text-emerald-400",
+    colorBg: "bg-emerald-400/10",
+    skills: ["PostgreSQL", "Supabase", "pgvector", "ChromaDB", "SQLite-vec", "MongoDB"],
     gridArea: "db",
   },
   {
     category: "Tools & Platforms",
     icon: Wrench,
-    accent: "text-teal-400",
-    accentBg: "bg-teal-400/10",
-    skills: ["Git", "Vercel", "N8N", "Claude Code", "Cursor", "Puppeteer"],
+    color: "text-rose-400",
+    colorBg: "bg-rose-400/10",
+    skills: ["Git", "Vercel", "N8N", "Claude Code", "Cursor", "Tauri", "Docker"],
     gridArea: "tools",
   },
 ];
@@ -73,22 +66,20 @@ const SkillCard = ({ group, className = "" }: { group: SkillGroup; className?: s
   const Icon = group.icon;
   return (
     <div
-      className={`reveal rounded-2xl border border-border bg-surface/40 p-5 sm:p-6 transition-all duration-400 hover:bg-surface-light hover:border-muted-foreground/20 hover:shadow-lg hover:shadow-black/20 ${className}`}
+      className={`reveal skill-card rounded-2xl p-5 sm:p-6 ${className}`}
       style={{ gridArea: group.gridArea }}
     >
-      <div className="flex items-center gap-3 mb-4">
-        <div className={`w-9 h-9 rounded-lg ${group.accentBg} flex items-center justify-center`}>
-          <Icon className={`w-[18px] h-[18px] ${group.accent}`} />
+      <div className="flex items-center gap-3 mb-5">
+        <div className={`w-9 h-9 rounded-xl ${group.colorBg} flex items-center justify-center flex-shrink-0`}>
+          <Icon className={`w-[18px] h-[18px] ${group.color}`} />
         </div>
-        <h3 className="font-heading font-semibold text-[15px] text-foreground">
-          {group.category}
-        </h3>
+        <h3 className="font-heading font-semibold text-[15px] text-foreground">{group.category}</h3>
       </div>
       <div className="flex flex-wrap gap-2">
         {group.skills.map((skill) => (
           <span
             key={skill}
-            className="px-3 py-1.5 text-xs font-medium rounded-lg border border-border bg-background/50 text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 transition-colors duration-200"
+            className="tag-pill"
           >
             {skill}
           </span>
@@ -121,19 +112,18 @@ const Skills = () => {
   return (
     <section ref={sectionRef} className="py-24 px-6" id="skills">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="reveal stagger-1 text-primary text-sm font-heading font-semibold tracking-[0.2em] uppercase block mb-4">
+        <div className="mb-16">
+          <span className="reveal stagger-1 block text-primary text-sm font-mono font-medium tracking-[0.2em] uppercase mb-4">
             Toolkit
           </span>
-          <h2 className="reveal stagger-2 font-heading font-bold text-4xl sm:text-5xl text-foreground mb-4">
+          <h2 className="reveal stagger-2 font-heading font-bold text-4xl sm:text-5xl text-foreground max-w-xl">
             Technologies I work with
           </h2>
-          <p className="reveal stagger-3 text-muted-foreground text-sm max-w-lg mx-auto">
-            From React frontends to Python AI pipelines to Node.js backends — comfortable across the full stack.
+          <p className="reveal stagger-3 text-muted-foreground text-sm mt-4 max-w-lg">
+            Comfortable across the full stack — from React frontends and Python AI pipelines to vector databases and Rust desktop apps.
           </p>
         </div>
 
-        {/* Bento grid */}
         <div
           className="grid gap-4"
           style={{
@@ -154,18 +144,11 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Mobile/tablet grid fallback */}
         <style>{`
           @media (max-width: 640px) {
             .grid[style] {
               grid-template-columns: 1fr !important;
-              grid-template-areas:
-                "ai"
-                "lang"
-                "front"
-                "back"
-                "db"
-                "tools" !important;
+              grid-template-areas: "ai" "lang" "front" "back" "db" "tools" !important;
             }
           }
           @media (min-width: 641px) and (max-width: 1023px) {

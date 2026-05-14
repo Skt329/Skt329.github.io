@@ -1,68 +1,57 @@
-import { Github, Linkedin, Mail, ArrowUpRight, Phone } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 
-const Footer = () => {
-  return (
-    <footer className="py-24 px-6" id="contact">
-      <div className="max-w-6xl mx-auto">
-        {/* CTA */}
-        <div className="text-center mb-16">
-          <h2 className="font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl text-foreground mb-6 leading-tight">
-            Let's build something<br />
-            <span className="text-gradient">together.</span>
-          </h2>
-          <p className="text-muted-foreground text-sm max-w-md mx-auto mb-10">
-            Open to full-time roles, freelance projects, and interesting collaborations.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10">
-            <a href="mailto:st108113@gmail.com" className="group flex items-center gap-2.5 text-foreground hover:text-primary transition-colors">
-              <Mail className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">st108113@gmail.com</span>
-            </a>
-            <span className="hidden sm:block w-1 h-1 rounded-full bg-muted-foreground/30" />
-            <a href="tel:+919721405709" className="group flex items-center gap-2.5 text-foreground hover:text-primary transition-colors">
-              <Phone className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">+91 97214 05709</span>
-            </a>
-          </div>
-
-          <a
-            href="mailto:st108113@gmail.com"
-            className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-heading font-semibold tracking-wide hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5"
-          >
-            Send me an email
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
-        </div>
-
-        <div className="section-divider mb-8" />
-
-        {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="font-heading font-bold text-lg text-foreground">
-              ST<span className="text-primary">.</span>
-            </span>
-            <span className="text-xs text-muted-foreground/50">
-              © {new Date().getFullYear()} Saurabh Tiwari
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            {[
-              { icon: Github, href: "https://github.com/Skt329", label: "GitHub" },
-              { icon: Linkedin, href: "https://linkedin.com/in/saurabht0", label: "LinkedIn" },
-              { icon: Mail, href: "mailto:st108113@gmail.com", label: "Email" },
-            ].map(({ icon: Icon, href, label }) => (
-              <a key={label} href={href} target={label !== "Email" ? "_blank" : undefined} rel="noopener noreferrer" aria-label={label}
-                className="w-9 h-9 flex items-center justify-center rounded-lg text-muted-foreground/40 hover:text-primary transition-all duration-300">
-                <Icon className="w-4 h-4" />
-              </a>
-            ))}
-          </div>
-        </div>
+const Footer = () => (
+  <footer id="contact" className="border-t border-border py-16 px-6">
+    <div className="max-w-6xl mx-auto">
+      {/* CTA block */}
+      <div className="text-center mb-16">
+        <p className="text-sm font-mono text-primary/70 tracking-[0.2em] uppercase mb-4">Get in touch</p>
+        <h2 className="font-heading font-bold text-4xl sm:text-5xl text-foreground mb-6">
+          Let's build something{" "}
+          <span className="text-gradient">together.</span>
+        </h2>
+        <p className="text-muted-foreground text-sm max-w-md mx-auto mb-8">
+          I'm actively looking for AI Engineer roles. If you're building something interesting with LLMs, agents, or RAG — reach out.
+        </p>
+        <a
+          href="mailto:st108113@gmail.com"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-heading font-semibold text-sm hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5"
+        >
+          st108113@gmail.com
+          <ArrowUpRight className="w-4 h-4" />
+        </a>
       </div>
-    </footer>
-  );
-};
+
+      {/* Bottom row */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-border">
+        <div className="text-sm font-heading font-bold text-foreground">
+          <span className="text-gradient">Saurabh Tiwari</span>
+          <span className="text-muted-foreground/50 font-normal ml-2">— AI Engineer, Bengaluru</span>
+        </div>
+        <div className="flex items-center gap-2">
+          {[
+            { icon: Github, href: "https://github.com/Skt329", label: "GitHub" },
+            { icon: Linkedin, href: "https://linkedin.com/in/saurabht0", label: "LinkedIn" },
+            { icon: Mail, href: "mailto:st108113@gmail.com", label: "Email" },
+          ].map(({ icon: Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target={label !== "Email" ? "_blank" : undefined}
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="w-9 h-9 flex items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-200"
+            >
+              <Icon className="w-4 h-4" />
+            </a>
+          ))}
+        </div>
+        <p className="text-xs text-muted-foreground/40">
+          © {new Date().getFullYear()} Saurabh Tiwari
+        </p>
+      </div>
+    </div>
+  </footer>
+);
 
 export default Footer;

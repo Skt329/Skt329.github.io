@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 
 const metrics = [
-  { value: "15+", label: "Orchestrated AI tools", detail: "NeutriAI" },
-  { value: "1K+", label: "Articles processed daily", detail: "Synth News" },
-  { value: "67%", label: "Cost reduction achieved", detail: "via batch APIs" },
-  { value: "4", label: "Production apps shipped", detail: "since 2024" },
+  { value: "6+", label: "Production AI apps shipped", desc: "agentic PWAs, desktop tools, npm packages" },
+  { value: "15+", label: "AI tools orchestrated", desc: "in a single agentic turn via Vercel AI SDK" },
+  { value: "67%", label: "Cost reduction", desc: "Synth News — $15/day to $5/day via batch processing" },
+  { value: "95%", label: "Search cost savings", desc: "hybrid vector + API search on Synth News" },
+  { value: "<2s", label: "Chat response latency", desc: "with semantic memory on NeutriAI" },
+  { value: "0", label: "Cloud dependencies", desc: "Audiobook Creator — fully local inference" },
 ];
 
 const ImpactMetrics = () => {
@@ -20,27 +22,35 @@ const ImpactMetrics = () => {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.06 }
     );
-    const cards = sectionRef.current?.querySelectorAll(".reveal");
-    cards?.forEach((c) => observer.observe(c));
+    const els = sectionRef.current?.querySelectorAll(".reveal");
+    els?.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 px-6" id="metrics">
+    <section ref={sectionRef} id="metrics" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="text-center mb-16">
+          <span className="reveal stagger-1 block text-primary text-sm font-mono font-medium tracking-[0.2em] uppercase mb-4">
+            Impact
+          </span>
+          <h2 className="reveal stagger-2 font-heading font-bold text-4xl sm:text-5xl text-foreground">
+            Numbers that{" "}
+            <span className="text-gradient">speak for themselves.</span>
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {metrics.map((m, i) => (
             <div
               key={m.label}
-              className={`reveal stagger-${i + 1} stat-glow rounded-2xl p-6 sm:p-8 text-center border border-border bg-surface/50`}
+              className={`reveal stagger-${Math.min(i + 1, 6)} bento-card rounded-2xl p-6 sm:p-8 group`}
             >
-              <div className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl text-primary mb-2 tracking-tight">
-                {m.value}
-              </div>
-              <div className="text-xs sm:text-sm text-foreground font-medium mb-1">{m.label}</div>
-              <div className="text-[10px] sm:text-xs text-muted-foreground">{m.detail}</div>
+              <div className="stat-number text-3xl sm:text-4xl mb-2">{m.value}</div>
+              <div className="text-sm font-heading font-semibold text-foreground mb-1">{m.label}</div>
+              <div className="text-xs text-muted-foreground leading-relaxed">{m.desc}</div>
             </div>
           ))}
         </div>
